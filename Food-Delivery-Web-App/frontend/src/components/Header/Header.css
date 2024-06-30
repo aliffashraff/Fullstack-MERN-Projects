@@ -19,22 +19,23 @@
   left: 6vw;
 }
 
-.header-contents h2{
+.header-contents h2 {
   font-weight: 500;
   color: white;
   /* set font size to whichever is larger */
   font-size: max(4.5vw, 22px);
 }
 
-.header-contents p{
+.header-contents p {
   color: white;
   font-size: 1vw;
+}
 
-.header-contents button{
+.header-contents button {
   border: none;
   background-color: white;
   border-radius: 50px;
-  padding: 1vw, 2.3vw;
+  padding: 1vw 2.3vw;
   color: #747474;
   font-weight: 500;
   font-size: max(1vw, 13px);
