@@ -10,7 +10,7 @@ const Navbar = () => {
 
   return (
     <div className="navbar">
-      {/* assets object that contains all the assets */}
+      {/* assets object that contains all the image */}
       <img src={assets.logo} alt="" className="logo" />
       <ul className="navbar-menu">
         {/* change the state class to 'active when clicked*/}

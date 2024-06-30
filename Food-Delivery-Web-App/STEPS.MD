@@ -24,7 +24,7 @@
    -> create objects that contain the assests and export them (eg: export const assets = {logo,})
    -> if want to use, can just impport assets.js and (eg: assests.logo)
 
-## 3. Navbar
+## 3. Navbar component
 
 ### 3a. Setup Navbar component
 
@@ -36,12 +36,12 @@
 5. Create a div in Navbar,jsx and add className 'navbar
 6. Create a div with className 'app' in the App component and mount the navbar component inside it
 
-### 3b. Create Navbar
+### 3b. Create Navbar component
 
 1. Set the main div class to 'navbar
 1. Create the structure of the navbar by dividing into 3 class; 'logo', 'navbar-menu' and 'navbar-right'
 
-### 3c. Style Navbar
+### 3c. Style Navbar component
 
 1. Set the app width to 80% in index.css
 2. Style the navbar 'logo'
@@ -78,27 +78,48 @@
 2. Create Header.jsx and Header.css file in Header folder
 3. Import the Header.css in the Header.jsx
 
-### Create Header
+### Create Header componwnt
 
 1. Set the main div class to 'header
 2. Create the header content
 
-### Style Header
+### Style Header component
 
 1. Copy header_img.png from assets and paste in public folder
 2. Style the header class
    -> import background image using the header_image.png. No need to provide full path bcs it is in public folder (eg: background: url('/header_img.png') no-repeat;)
    -> set the class to position: relative
-3. Style header-contents class 
+3. Style header-contents class
 4. create fadeIn in animation using @keyframes in index.css and add the animation in header-contents
 
-## Menu
+## ExploreMenu
 
-### Setup Menu component
-1. 
+### Setup ExploreMenu component
+
+1. Create ExploreMenu component folder
+2. Create ExploreMenu.jsx and Menu.css
+3. Mount ExploreMenu component in Home page and import ExploreMenu.css in the ExploreMenu.jsx file
+
+### Create ExploreMenu component
+
+1. Import ExploreMenu.css and the menu_list arrays of objects from assets.js
+2. The class of the root div is explore-menu
+3. Create explore-menu-text and explore-menu-list class
+4. Map the menu_list array with the index as the key
+5. Create break line tag using hr tag
+
+### Style ExploreMenu component
+
+1. Make explore-menu-list can be scroll left to right
+   -> overflow-x: scroll;
+2. Hide the scroll panel
+   -> .explore-menu-list::-webkit-scrollbar {
+   display: none;
+   }
+3. Style the hr tag
 
 ## Home page
 
-1. Mount Header component in the home page
-
 ### 1a. Create Home page component
+
+1. Mount Header and ExploreMenu component in the home page
