@@ -1,7 +1,7 @@
 import './ExploreMenu.css';
 import { menu_list } from '../../assets/assets';
 
-const ExploreMenu = () => {
+const ExploreMenu = ({ category, setCategory }) => {
   return (
     <div className="explore-menu" id="explore-menu">
       <h1>Explore Our Menu</h1>
@@ -15,8 +15,24 @@ const ExploreMenu = () => {
         {/* create list of menu from the array objects */}
         {menu_list.map((item, index) => (
           // key must be provided for children list, therefore, the index is used as the key
-          <div className="explore-menu-list-item" key={index}>
-            <img src={item.menu_image} alt="" />
+          <div
+            className="explore-menu-list-item"
+            key={index}
+            // toggle the category state between 'All' and item.menu_name when clicked
+            onClick={(e) =>
+              setCategory((currentCategory) =>
+                currentCategory === item.menu_name
+                  ? (category = 'All')
+                  : (category = item.menu_name)
+              )
+            }
+          >
+            <img
+              // set the clicked image class as active
+              className={category === item.menu_name ? 'active' : ''}
+              src={item.menu_image}
+              alt=""
+            />
             {/* name of the item */}
             <p>{item.menu_name}</p>
           </div>

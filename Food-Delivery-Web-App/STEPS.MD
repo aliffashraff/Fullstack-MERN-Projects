@@ -55,13 +55,13 @@
    -> style the menu list when the state class changed to 'active' after clicked
    -> style 'dot' class (visible when there are items in cart)
 
-## Setup pages
+## 4. Setup pages
 
 1. Create Home, Cart and PlaceOrder folders in page folder
 2. Create page components files for each folder
 3. Crate css files for each folder
 
-## Setup Router for each page component
+## 5. Setup Router for each page component
 
 1. in main.jsx
    -> import {browserRouter} from 'react-router-dom'
@@ -70,20 +70,20 @@
    -> Use Router tag that act as container to wrap all the routes in the Route tag
    -> Setup the path and element(component) in the Route tag for each Home, Cart and PlaceOrder page and make sure to import the pages too (eg: <Route path="/" element={<Home />} />)
 
-## Header
+## 6. Header component
 
-### Setup Header component
+### 6a. Setup Header component
 
 1. Create Header folder in the components folder
 2. Create Header.jsx and Header.css file in Header folder
 3. Import the Header.css in the Header.jsx
 
-### Create Header componwnt
+### 6b. Create Header componwnt
 
 1. Set the main div class to 'header
 2. Create the header content
 
-### Style Header component
+### 6c. Style Header component
 
 1. Copy header_img.png from assets and paste in public folder
 2. Style the header class
@@ -92,23 +92,25 @@
 3. Style header-contents class
 4. create fadeIn in animation using @keyframes in index.css and add the animation in header-contents
 
-## ExploreMenu
+## 7. ExploreMenu component
 
-### Setup ExploreMenu component
+### 7a. Setup ExploreMenu component
 
 1. Create ExploreMenu component folder
 2. Create ExploreMenu.jsx and Menu.css
 3. Mount ExploreMenu component in Home page and import ExploreMenu.css in the ExploreMenu.jsx file
 
-### Create ExploreMenu component
+### 7b. Create ExploreMenu component
 
 1. Import ExploreMenu.css and the menu_list arrays of objects from assets.js
 2. The class of the root div is explore-menu
 3. Create explore-menu-text and explore-menu-list class
 4. Map the menu_list array with the index as the key
 5. Create break line tag using hr tag
+6. In explore-menu-list-item class, create a function that toggle the category state to the item name and change the class of the img tag to 'active'
+7. The explore menu is used to filter the item by category when clicked
 
-### Style ExploreMenu component
+### 7c. Style ExploreMenu component
 
 1. Make explore-menu-list can be scroll left to right
    -> overflow-x: scroll;
@@ -117,9 +119,15 @@
    display: none;
    }
 3. Style the hr tag
+4. Style the img 'active' class by adding border to show the img is highligted
 
-## Home page
+## 8. Home page
 
-### 1a. Create Home page component
+### 8a. Create Home page
 
 1. Mount Header and ExploreMenu component in the home page
+2. Create category state and pass to ExploreMenu component as a prop
+3. 
+
+### 8b. Style Home page
+
