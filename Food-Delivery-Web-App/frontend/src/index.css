@@ -1,0 +1,27 @@
+/* import google fonts: outfit */
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
+
+/* global default style */
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: outfit;
+}
+
+body {
+  min-height: 100vh;
+}
+
+a {
+  text-decoration: none;
+  /* so it will not change color after visited */
+  color: inherit;
+}
+
+/* only use 80% width of the screen for the app */
+.app {
+  width: 80%;
+  margin: auto;
+}
+
