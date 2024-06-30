@@ -17,6 +17,8 @@
   max-width: 50%;
   bottom: 10%;
   left: 6vw;
+  /* add animation keyframes craeted in index.css */
+  animation: fadeIn 3s;
 }
 
 .header-contents h2 {

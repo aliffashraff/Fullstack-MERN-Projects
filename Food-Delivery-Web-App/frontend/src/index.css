@@ -1,7 +1,8 @@
+/* global default style */
+
 /* import google fonts: outfit */
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
 
-/* global default style */
 * {
   padding: 0;
   margin: 0;
@@ -25,3 +26,11 @@ a {
   margin: auto;
 }
 
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}

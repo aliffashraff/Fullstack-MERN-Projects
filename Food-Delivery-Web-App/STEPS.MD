@@ -90,9 +90,10 @@
    -> import background image using the header_image.png. No need to provide full path bcs it is in public folder (eg: background: url('/header_img.png') no-repeat;)
    -> set the class to position: relative
 3. Style header-contents class 
+4. create fadeIn in animation using @keyframes in index.css and add the animation in header-contents
 
 ## Home page
 
 1. Mount Header component in the home page
 
-### 1a. Create Home page ocmponent
+### 1a. Create Home page component
