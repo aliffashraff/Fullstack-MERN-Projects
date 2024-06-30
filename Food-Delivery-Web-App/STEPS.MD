@@ -92,6 +92,11 @@
 3. Style header-contents class 
 4. create fadeIn in animation using @keyframes in index.css and add the animation in header-contents
 
+## Menu
+
+### Setup Menu component
+1. 
+
 ## Home page
 
 1. Mount Header component in the home page
