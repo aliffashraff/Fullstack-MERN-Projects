@@ -151,4 +151,9 @@
    </StoreContext.Provider>
    );
    };
-4. Wrap the App with the StoreContextProvider component
+4. Wrap the App with the StoreContextProvider component so that any component can acess the context value
+
+## 10. FoodDisplay component
+
+### 10a. Create FoodDisplay component
+

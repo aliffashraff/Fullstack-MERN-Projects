@@ -9,7 +9,7 @@ const Navbar = () => {
   const [menu, setMenu] = useState('home');
 
   return (
-    <div className="navbar">
+    <div className="navbar" id="navbar">
       {/* assets object that contains all the image */}
       <img src={assets.logo} alt="" className="logo" />
       <ul className="navbar-menu">
