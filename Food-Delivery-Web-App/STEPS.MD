@@ -153,6 +153,10 @@
    );
    };
 4. Wrap the App with the StoreContextProvider component so that any component can acess the context value
+5. Add cartItem state and set as empty object as default
+6. Create addToCart and removeFromCart function with the itemId as parameter
+7. If user first time adding item in the cart, it will create new entry in the cartItem, else add the quantity of the itemId
+8. Store cartItem, setCartItem, addTocart and removeFromCart as variable in contextValue object
 
 ## 10. FoodDisplay component
 
@@ -193,7 +197,14 @@
 1. Wrap with a div with class and id of food-item
 2. Structure all the food details, image, name, price and description of a single item
 3. Import the stars rating from the assets
+4. create itemCount state
+5. In food-item-image class, create a function that will incrase and decrease the itemCount state when the '+' and '-' img is clicked
+6. Name the class as add-food-item and food-item-counter
+7. destructure contextValue and use the context using useContext(StoreContext)
 
 ### 11. Style FoodItem component
 
-1.
+1. Style all the elements
+2. Make the .food-item-img-container position as relative
+3. Make the add-food-item and .food-item-counter relative
+// stop at 1.40.31
