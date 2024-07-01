@@ -1,8 +1,21 @@
 .navbar {
-  padding: 20px 0px;
+  padding: 20px 70px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+
+  background-color: white;
+}
+
+.navbar-scrolled {
+  /* adds a shadow when scrolled */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 /* logo assets class */

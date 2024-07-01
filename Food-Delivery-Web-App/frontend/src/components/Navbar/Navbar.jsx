@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 // import assets
 import { assets } from '../../assets/assets';
 // import css
@@ -8,14 +8,35 @@ import { Link } from 'react-router-dom';
 const Navbar = () => {
   // state to set the class for menu
   const [menu, setMenu] = useState('home');
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  // make the header shadow visible when scrolled
+  const handleScroll = () => {
+    if (window.scrollY > 0) {
+      setIsScrolled(true);
+    } else {
+      setIsScrolled(false);
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll);
+
+    //cleanup function
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   return (
-    <div className="navbar" id="navbar">
+    <div
+      className={`navbar ${isScrolled ? 'navbar-scrolled' : ''}`}
+      id="navbar"
+    >
       {/* assets object that contains all the image */}
       <img src={assets.logo} alt="" className="logo" />
       <ul className="navbar-menu">
         {/* link the to the home page path */}
-        <Link to={'/'}
+        <Link
+          to={'/'}
           // change the state class to 'active when clicked
           onClick={(e) => setMenu('home')}
           className={menu === 'home' ? 'active' : ''}
