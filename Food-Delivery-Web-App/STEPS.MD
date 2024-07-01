@@ -127,7 +127,28 @@
 
 1. Mount Header and ExploreMenu component in the home page
 2. Create category state and pass to ExploreMenu component as a prop
-3. 
+3.
 
 ### 8b. Style Home page
 
+## 9. Context
+
+1. Create context file in src file
+
+### 9a. StoreContext
+
+1. Create StoreContext.jsx in context file
+2. Set StoreContext as null in default
+   -> export const StoreContext = createContext(null);
+3. Create StoreContextProvider component to set up the Provider and the context value
+   -> const StoreContextProvider = (props) => {
+   const contextValue = {
+   food_list,
+   };
+   return (
+   <StoreContext.Provider value={contextValue}>
+   {props.children}
+   </StoreContext.Provider>
+   );
+   };
+4. Wrap the App with the StoreContextProvider component
