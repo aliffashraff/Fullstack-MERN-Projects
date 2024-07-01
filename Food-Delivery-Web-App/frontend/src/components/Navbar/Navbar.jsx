@@ -32,7 +32,9 @@ const Navbar = () => {
       id="navbar"
     >
       {/* assets object that contains all the image */}
-      <img src={assets.logo} alt="" className="logo" />
+      <a href="#header" onClick={(e) => setMenu('home')}>
+        <img src={assets.logo} alt="" className="logo" />
+      </a>
       <ul className="navbar-menu">
         {/* link the to the home page path */}
         <Link

@@ -123,3 +123,8 @@
     display: none;
   }
 }
+
+html {
+  /* Adjust based on the height of the navbar */
+  scroll-padding-top: 110px; 
+}
