@@ -1,0 +1,17 @@
+.food-display {
+  margin-top: 30px;
+}
+
+.food-display h2 {
+  font-size: max(2vw, 24px);
+  font-weight: 600;
+}
+
+.food-display-list {
+  margin-top: 30px;
+  display: grid;
+  /* creates as many columns as possible that fit within the container, with each column will be at least 240px wide but can grow to take up more space (1fr) if available.*/
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  /* 30px column gap and 50px row gap */
+  gap: 50px 30px;
+}

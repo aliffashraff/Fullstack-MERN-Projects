@@ -11,7 +11,7 @@
 4. Delete App.css file and content in App.jsx & index.css
 5. Create App component in App.jsx
 6. Set the default style in index.css
-7. Change the title in html.css to 'Food Deivery'
+7. Change the title in html.css to 'Food Delivery'
 
 ## 2. Create folder structure for React
 
@@ -98,7 +98,8 @@
 
 1. Create ExploreMenu component folder
 2. Create ExploreMenu.jsx and Menu.css
-3. Mount ExploreMenu component in Home page and import ExploreMenu.css in the ExploreMenu.jsx file
+3. Import ExploreMenu.css in the ExploreMenu.jsx file
+4. Destructure the props in the component paramater
 
 ### 7b. Create ExploreMenu component
 
@@ -125,9 +126,9 @@
 
 ### 8a. Create Home page
 
-1. Mount Header and ExploreMenu component in the home page
-2. Create category state and pass to ExploreMenu component as a prop
-3.
+1. Mount Header and ExploreMenu component
+2. Create category state and pass the state and its dispatch function to ExploreMenu component as a prop
+3. Mount FoodDisplay component and pass the category state as prop
 
 ### 8b. Style Home page
 
@@ -155,5 +156,44 @@
 
 ## 10. FoodDisplay component
 
-### 10a. Create FoodDisplay component
+### 10a. Setup FoodDisplay component
 
+1. Create FoodDisplay component folder
+2. Create FoodDisplay.jsx and Menu.css
+3. Import FoodDisplay.css in the FoodDisplay.jsx file
+4. Destructure the props in the component paramater
+
+### 10b. Create FoodDisplay component
+
+1. Wrap with a div with class and id of food-display
+2. Create a div with 'food-display-list' class and map the food_list array
+   -> food_list.map((item, index)=>{})
+3. Mount the FoodItem component in the map callback with the food details props
+4. FoodItem will structure food_list item
+
+### 10c. Style FoodDisplay component
+
+1. Use grid to organize the list of the food
+   -> grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+   -> that means creates as many columns as possible that fit within the container, with each column will be at least 240px wide but can grow to take up more space (1fr) if available
+2. Set 30px column gap and 50px row gap
+   -> gap: 50px 30px;
+
+## 11. FoodItem component
+
+### 11a. Setup FoodItem component
+
+1. Create FoodItem component folder
+2. Create FoodItem.jsx and Menu.css
+3. Import FoodItem.css in the FoodDisplay.jsx file
+4. Destructure all the props in the component paramater
+
+### 11b. Create FoodItem component
+
+1. Wrap with a div with class and id of food-item
+2. Structure all the food details, image, name, price and description of a single item
+3. Import the stars rating from the assets
+
+### 11. Style FoodItem component
+
+1.

@@ -11,7 +11,7 @@ const Home = () => {
     <div className="home-page">
       <Header />
       <ExploreMenu category={category} setCategory={setCategory} />
-      <FoodDisplay />
+      <FoodDisplay category={category} />
     </div>
   );
 };
