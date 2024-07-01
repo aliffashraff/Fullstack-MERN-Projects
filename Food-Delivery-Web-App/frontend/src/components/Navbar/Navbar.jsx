@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { assets } from '../../assets/assets';
 // import css
 import './Navbar.css';
+import { Link } from 'react-router-dom';
 
 const Navbar = () => {
   // state to set the class for menu
@@ -13,31 +14,35 @@ const Navbar = () => {
       {/* assets object that contains all the image */}
       <img src={assets.logo} alt="" className="logo" />
       <ul className="navbar-menu">
-        {/* change the state class to 'active when clicked*/}
-        <li
+        {/* link the to the home page path */}
+        <Link to={'/'}
+          // change the state class to 'active when clicked
           onClick={(e) => setMenu('home')}
           className={menu === 'home' ? 'active' : ''}
         >
           Home
-        </li>
-        <li
+        </Link>
+        <a
+          href="#explore-menu"
           onClick={(e) => setMenu('menu')}
           className={menu === 'menu' ? 'active' : ''}
         >
           Menu
-        </li>
-        <li
+        </a>
+        <a
+          href="#app-download"
           onClick={(e) => setMenu('mobile-app')}
           className={menu === 'mobile-app' ? 'active' : ''}
         >
           Mobile-App
-        </li>
-        <li
+        </a>
+        <a
+          href="#footer"
           onClick={(e) => setMenu('contact-us')}
           className={menu === 'contact-us' ? 'active' : ''}
         >
           Contact Us
-        </li>
+        </a>
       </ul>
       <div className="navbar-right">
         <img src={assets.search_icon} alt="" />

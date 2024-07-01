@@ -12,7 +12,7 @@ const App = () => {
         <Navbar />
         {/* use Router tag to create multiple routes*/}
         <Routes>
-          {/* the path will link to the page component */}
+          {/* set the path of the page component */}
           <Route path="/" element={<Home />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/order" element={<PlaceOrder />} />

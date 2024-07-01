@@ -8,6 +8,8 @@
   margin: 0;
   box-sizing: border-box;
   font-family: outfit;
+  /* scroll smoothly when link clicked */
+  scroll-behavior: smooth;
 }
 
 body {
