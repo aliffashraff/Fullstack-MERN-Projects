@@ -5,7 +5,7 @@ import './Home.css';
 import { useState } from 'react';
 
 const Home = () => {
-  // state will passed as prop to ExploreMenu
+  // state will be passed as prop to ExploreMenu
   const [category, setCategory] = useState('All');
   return (
     <div className="home-page">
