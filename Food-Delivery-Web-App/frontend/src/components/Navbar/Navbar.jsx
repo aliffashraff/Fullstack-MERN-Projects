@@ -1,15 +1,19 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 // import assets
 import { assets } from '../../assets/assets';
 // import css
 import './Navbar.css';
 import { Link } from 'react-router-dom';
 import { HashLink } from 'react-router-hash-link';
+import { StoreContext } from '../../context/StoreContext';
 
 const Navbar = ({ setShowLogin }) => {
   // state to set the class for menu
   const [menu, setMenu] = useState('home');
   const [isScrolled, setIsScrolled] = useState(false);
+
+  // get context
+  const { getTotalCartAmount } = useContext(StoreContext);
 
   // make the header shadow visible when scrolled
   const handleScroll = () => {
@@ -75,7 +79,7 @@ const Navbar = ({ setShowLogin }) => {
             <img src={assets.basket_icon} alt="" />
           </Link>
           {/* if there are items in cart, the class 'dot' will be visible */}
-          <div className="dot"></div>
+          {getTotalCartAmount() > 0 ? <div className="dot"></div> : <></>}
         </div>
         {/* chsnge state value to show popup */}
         <button onClick={() => setShowLogin(true)}>Sign In</button>

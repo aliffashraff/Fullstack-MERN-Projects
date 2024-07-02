@@ -29,6 +29,25 @@ const StoreContextProvider = (props) => {
     setCartItems((current) => ({ ...current, [itemId]: current[itemId] - 1 }));
   };
 
+  // cart total function
+  const getTotalCartAmount = () => {
+    let totalAmount = 0;
+
+    // use for...in to loop over objects
+    for (const itemId in cartItems) {
+      // check the item that has quantity in the cart
+      if (cartItems[itemId] > 0) {
+        // find the item in the food_list that match with that itemId in the cartItems
+        let itemInfo = food_list.find((product) => product._id === itemId);
+
+        // price * quantity
+        totalAmount += itemInfo.price * cartItems[itemId];
+      }
+    }
+
+    return totalAmount;
+  };
+
   // useEffect
   useEffect(
     () => {
@@ -47,6 +66,7 @@ const StoreContextProvider = (props) => {
     setCartItems,
     addTocart,
     removeFromCart,
+    getTotalCartAmount,
   };
 
   return (
