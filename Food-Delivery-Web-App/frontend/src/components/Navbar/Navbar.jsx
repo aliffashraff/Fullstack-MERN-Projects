@@ -5,7 +5,7 @@ import { assets } from '../../assets/assets';
 import './Navbar.css';
 import { Link } from 'react-router-dom';
 
-const Navbar = () => {
+const Navbar = ({ setShowLogin }) => {
   // state to set the class for menu
   const [menu, setMenu] = useState('home');
   const [isScrolled, setIsScrolled] = useState(false);
@@ -74,7 +74,8 @@ const Navbar = () => {
           {/* if there are items in cart, the class 'dot' will be visible */}
           <div className="dot"></div>
         </div>
-        <button>Sign In</button>
+        {/* chsnge state value to show popup */}
+        <button onClick={() => setShowLogin(true)}>Sign In</button>
       </div>
     </div>
   );
