@@ -14,7 +14,7 @@ const Cart = () => {
   } = useContext(StoreContext);
 
   return (
-    <div className="cart">
+    <div className="cart" id="cart">
       <div className="cart-items">
         <div className="cart-items-title">
           <p>Items</p>

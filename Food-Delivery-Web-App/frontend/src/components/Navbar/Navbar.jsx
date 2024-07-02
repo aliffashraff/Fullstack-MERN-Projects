@@ -37,33 +37,33 @@ const Navbar = ({ setShowLogin }) => {
       id="navbar"
     >
       {/* assets object that contains all the image */}
-      <HashLink to={'/#header'} onClick={(e) => setMenu('home')}>
+      <HashLink to={'/#home-page'} onClick={(e) => setMenu('home')}>
         <img src={assets.logo} alt="" className="logo" />
       </HashLink>
       <ul className="navbar-menu">
         {/* link the to the home page path */}
         <HashLink
-          to={'/#header'}
+          to={'/#home-page'}
           // change the state class to 'active when clicked
           onClick={(e) => setMenu('home')}
           className={menu === 'home' ? 'active' : ''}
         >
           Home
         </HashLink>
-        <a
-          href="#explore-menu"
+        <HashLink
+          to="/#explore-menu"
           onClick={(e) => setMenu('menu')}
           className={menu === 'menu' ? 'active' : ''}
         >
           Menu
-        </a>
-        <a
-          href="#app-download"
+        </HashLink>
+        <HashLink
+          to="/#app-download"
           onClick={(e) => setMenu('mobile-app')}
           className={menu === 'mobile-app' ? 'active' : ''}
         >
           Mobile-App
-        </a>
+        </HashLink>
         <a
           href="#footer"
           onClick={(e) => setMenu('contact-us')}
@@ -75,13 +75,13 @@ const Navbar = ({ setShowLogin }) => {
       <div className="navbar-right">
         <img src={assets.search_icon} alt="" />
         <div className="navbar-basket-icon">
-          <Link to={'/cart'}>
+          <HashLink to={'/cart/#cart'} onClick={() => setMenu('')}>
             <img src={assets.basket_icon} alt="" />
-          </Link>
+          </HashLink>
           {/* if there are items in cart, the class 'dot' will be visible */}
           {getTotalCartAmount() > 0 ? <div className="dot"></div> : <></>}
         </div>
-        {/* chsnge state value to show popup */}
+        {/* change state value to show popup */}
         <button onClick={() => setShowLogin(true)}>Sign In</button>
       </div>
     </div>
