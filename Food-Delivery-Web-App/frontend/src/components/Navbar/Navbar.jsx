@@ -75,9 +75,9 @@ const Navbar = ({ setShowLogin }) => {
       <div className="navbar-right">
         <img src={assets.search_icon} alt="" />
         <div className="navbar-basket-icon">
-          <HashLink to={'/cart/#cart'} onClick={() => setMenu('')}>
+          <Link to={'/cart'} onClick={() => setMenu('')}>
             <img src={assets.basket_icon} alt="" />
-          </HashLink>
+          </Link>
           {/* if there are items in cart, the class 'dot' will be visible */}
           {getTotalCartAmount() > 0 ? <div className="dot"></div> : <></>}
         </div>

@@ -6,6 +6,7 @@ import PlaceOrder from './pages/PlaceOrder/PlaceOrder';
 import Footer from './components/Footer/Footer';
 import { useState } from 'react';
 import LoginPopup from './components/LoginPopup/LoginPopup';
+import ScrollToTop from './components/ScrollToTop/ScrollToTop'
 
 const App = () => {
   const [showLogin, setShowLogin] = useState(false);
@@ -15,6 +16,8 @@ const App = () => {
       {/* display popup on top of App if state = true */}
       {showLogin ? <LoginPopup setShowLogin={setShowLogin} /> : <></>}
       <div className="app">
+        {/* ensure Link will link to top of the page */}
+        <ScrollToTop />
         {/* pass the the setter function as prop */}
         <Navbar setShowLogin={setShowLogin} />
         {/* use Router tag to create multiple routes*/}

@@ -1,7 +1,7 @@
 import './PlaceOrder.css';
 
 const PlaceOrder = () => {
-  return <div></div>;
+  return <div>Order</div>;
 };
 
 export default PlaceOrder;
