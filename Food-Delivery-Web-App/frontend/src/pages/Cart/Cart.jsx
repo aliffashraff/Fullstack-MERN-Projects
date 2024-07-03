@@ -6,15 +6,10 @@ import { useNavigate } from 'react-router-dom';
 
 const Cart = () => {
   // get context
-  const {
-    cartItems,
-    addTocart,
-    removeFromCart,
-    food_list,
-    getTotalCartAmount,
-  } = useContext(StoreContext);
+  const { cartItems, removeFromCart, food_list, getTotalCartAmount } =
+    useContext(StoreContext);
 
-  // to navigate side effects
+  // use useNavigate to navigate when clicking buttons, not use Link bcs its not a link, but a button
   const navigate = useNavigate();
 
   return (
@@ -71,14 +66,17 @@ const Cart = () => {
           <hr />
           <div className="cart-total-details">
             <p>Delivery fee</p>
-            <p>${2}</p>
+            <p>${getTotalCartAmount() === 0 ? 0 : 5}</p>
           </div>
           <hr />
           <div className="cart-total-details">
             <b>Total</b>
-            <b>${getTotalCartAmount() + 2}</b>
+            <b>${getTotalCartAmount() === 0 ? 0 : getTotalCartAmount() + 5}</b>
           </div>
-          <button onClick={()=>navigate('/order')}>PROCEED TO CHECKOUT</button>
+          {/* navigate to order page */}
+          <button onClick={() => navigate('/order')}>
+            PROCEED TO CHECKOUT
+          </button>
         </div>
         <div className="cart-promo-code">
           <div>
