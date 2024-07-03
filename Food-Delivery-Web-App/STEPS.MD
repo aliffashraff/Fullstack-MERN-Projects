@@ -249,5 +249,13 @@
 3. edit the password and project name
 4. create db.js in config folder and create the connectDB function
 5. import {config} from .env and invoke config
-6. abaove the app.listen(port), add the connectDB (import connectDB first - must add.js)
+6. add the connectDB (import connectDB first - must add.js)
    -> await connectDB(process.env.MONGO_URI)
+
+## Create models
+
+1. create FoodModel.js in model folder
+2. import mongoose and create schema
+   -> const FoodSchema = new mongoose.Schema({})
+3. set the schema as a model
+   -> const FoodModel = mongoose.model(Food, FoodSchema)
