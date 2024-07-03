@@ -247,9 +247,9 @@
 1. open Atlas MongoDb and connect the drive and copy the connection string
 2. paste the connection string in .env as a MONGO_URI variable
 3. edit the password and project name
-4. create db.js in config folder and create the connectDB function
-5. import {config} from .env and invoke config
-6. add the connectDB (import connectDB first - must add.js)
+4. create db.js in config folder and create the connectDB function and export default connectDB
+5. import {config} from 'dotenv' and invoke config
+6. add the connectDB (import connectDB first - must add .js)
    -> await connectDB(process.env.MONGO_URI)
 
 ## Create models
@@ -259,3 +259,26 @@
    -> const FoodSchema = new mongoose.Schema({})
 3. set the schema as a model
    -> const FoodModel = mongoose.model(Food, FoodSchema)
+4. export deafult FoodModel
+
+## Setup controller and route
+
+1. create foodController.js in controllers folder
+2. import the FoodModel and {StatusCodes}
+3. setup CRUD and export eg:
+   -> const addFood = (req, res) => {}
+   -> export {addfood}
+4. create foodRoute.js in routes folder
+5. import express, import {addFood} and call Router from express -> const foodRouter = exprees.Router()
+6. create route and export eg:
+   -> foodRouter.route('/add').post(addFood)
+   -> export default foodRouter
+7. import and add routes in server.js
+   -> app.use('/api/food)
+8. the post url will be http://localhost:3000/api/food/add
+
+## Controllers
+
+
+
+## Routes

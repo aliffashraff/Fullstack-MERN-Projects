@@ -6,6 +6,7 @@ import { config } from 'dotenv';
 
 // files
 import connectDB from './config/db.js';
+import foodRouter from './routes/foodRoute.js';
 
 // configuration
 config();
@@ -16,6 +17,7 @@ app.use(express.json()); // parse JSON
 app.use(cors()); // can access backend from any frontend
 
 // routes
+app.use('/api/food', foodRouter);
 
 // test API response
 app.get('/', (req, res) => {
