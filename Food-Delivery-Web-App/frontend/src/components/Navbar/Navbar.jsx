@@ -4,6 +4,7 @@ import { assets } from '../../assets/assets';
 // import css
 import './Navbar.css';
 import { Link } from 'react-router-dom';
+// install react-router-hash-link first
 import { HashLink } from 'react-router-hash-link';
 import { StoreContext } from '../../context/StoreContext';
 

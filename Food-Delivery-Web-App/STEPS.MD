@@ -1,4 +1,4 @@
-# Steps In Creating Food Delivery App
+# Frontend
 
 ## 1. Create react project
 
@@ -207,4 +207,36 @@
 1. Style all the elements
 2. Make the .food-item-img-container position as relative
 3. Make the add-food-item and .food-item-counter relative
-// stop at 1.40.31
+   // stop at 1.40.31
+
+# Backend
+
+## Setup backend project
+
+1. Create backend folder and open terminal
+2. write command 'npm init' or 'npm init -y' for default
+3. entry point as index.js, server.js or app.js
+   -> if it will use other backend, use index, if it is a standalone backend use server or app
+4. Create file server.js
+5. install dependencies -> npm install express mongoose bcrypt cors jsonwebtoken dotenv body-parser multer stripe validator
+6. install nodemon as dev dependency -> npm i -D nodemon
+7. create .gitignore files with -> /node_modules .env
+8. inside package.json, in scripts object insert
+   -> "dev": "nodemon server.js" or "server": "nodemon server.js"
+9. create folders in backend -> models, routes, middleware, controllers, config, uploads
+10. crate .env file
+11. in package.json add -> "type": "module",
+
+## Setup app/server.js
+
+1. export express and cors
+2. declare app as express - const app = express()
+3. setup middlewares
+   -> app.use(express.json()) -> app.use(cors())
+4. define port number -> const port = process.env.PORT || 4000
+5. setup API response -> app.get('/), (req, res)=>{
+6. -> const start = async() => {
+   app.listen(port, () => console.log(`Server is listening on port ${port}...`))}
+   -> wrap in try catch
+   res.status(200).send('Hello World)}
+7. run the app -> start ();
