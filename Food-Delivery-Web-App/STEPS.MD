@@ -279,6 +279,8 @@
 
 ## Controllers
 
-
+1. to post to db, can use -> item = await Model.create or -> item = new Model and item.saved()
 
 ## Routes
+
+1. use multer to handle file request
