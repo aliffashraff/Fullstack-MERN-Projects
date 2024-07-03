@@ -1,8 +1,13 @@
 import express from 'express';
 import cors from 'cors';
 import { StatusCodes } from 'http-status-codes';
+import { config } from 'dotenv';
+import connectDB from './config/db.js';
 
-// setup app in express environment
+// setup config .env
+config();
+
+// app config
 const app = express();
 
 // middlewares
@@ -14,11 +19,16 @@ app.get('/', (req, res) => {
   res.status(StatusCodes.OK).send('Hello World');
 });
 
-// app config
+// connect DB and listen to port
 const port = process.env.PORT || 3000;
 const start = async () => {
   try {
-    app.listen(port, () => console.log(`Server is listeneing on port ${port}...`));
+    await connectDB(process.env.MONGO_URI).then(() =>
+      console.log('DB connected')
+    );
+    app.listen(port, () =>
+      console.log(`Server is listeneing on port ${port}...`)
+    );
   } catch (error) {
     console.log(error);
   }

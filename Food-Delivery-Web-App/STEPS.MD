@@ -240,3 +240,14 @@
    -> wrap in try catch
    res.status(200).send('Hello World)}
 7. run the app -> start ();
+8. open thunder client and post the localhost url
+
+## Datasbase setup
+
+1. open Atlas MongoDb and connect the drive and copy the connection string
+2. paste the connection string in .env as a MONGO_URI variable
+3. edit the password and project name
+4. create db.js in config folder and create the connectDB function
+5. import {config} from .env and invoke config
+6. abaove the app.listen(port), add the connectDB (import connectDB first - must add.js)
+   -> await connectDB(process.env.MONGO_URI)
