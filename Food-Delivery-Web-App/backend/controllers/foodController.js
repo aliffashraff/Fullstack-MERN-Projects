@@ -45,7 +45,7 @@ const addFood = async (req, res) => {
   } catch (error) {
     res
       .status(StatusCodes.INTERNAL_SERVER_ERROR)
-      .json({ success: false, error: error.message });
+      .json({ success: false, message: 'Error', error: error.message });
   }
 };
 
@@ -57,7 +57,7 @@ const getAllFood = async (req, res) => {
   } catch (error) {
     res
       .status(StatusCodes.NOT_FOUND)
-      .json({ success: false, error: error.message });
+      .json({ success: false, message: 'Error', error: error.message });
   }
 };
 
@@ -78,7 +78,7 @@ const deleteFood = async (req, res) => {
     console.log(error);
     res
       .status(StatusCodes.NOT_FOUND)
-      .json({ success: false, error: error.message });
+      .json({ success: false, message: 'Error', error: error.message });
   }
 };
 
