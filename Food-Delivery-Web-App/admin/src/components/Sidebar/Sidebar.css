@@ -3,6 +3,7 @@
   min-height: 100vh;
   border: 1.5px solid #a9a9a9;
   border-top: 0;
+  background-color: #f9f9f9;
 }
 
 .sidebar-options {
@@ -11,28 +12,25 @@
   display: flex;
   flex-direction: column;
   gap: 20px;
-  font-size: max(1vw, 10px);
+  font-size: 14px;
 }
 
 .sidebar-option {
   display: flex;
   align-items: center;
   gap: 12px;
-  border: 1px solid #a9a9a9;
-  border-right: 8px 10px;
-  padding: 8px 10px;
-  border-radius: 3px 0px 0px 3px;
+  padding: 12px 20px;
   cursor: pointer;
+  text-decoration: none;
+  color: #333;
 }
 
-.sidebar-options .active {
+.sidebar-option img {
+  max-width: 24px;
+}
+
+.sidebar-option.active {
   background-color: #fff0ed;
-  border-color: tomato;
+  border-left: 4px solid tomato;
   color: tomato;
-}
-
-@media (max-width: 90px) {
-  .sidebar-option p {
-    display: none;
-  }
 }
