@@ -20,7 +20,7 @@ const App = () => {
         <ScrollToTop />
         {/* pass the the setter function as prop */}
         <Navbar setShowLogin={setShowLogin} />
-        {/* use Router tag to create multiple routes*/}
+        {/* use Routes tag to create multiple routes*/}
         <Routes>
           {/* set the path of the page component */}
           <Route path="/" element={<Home />} />

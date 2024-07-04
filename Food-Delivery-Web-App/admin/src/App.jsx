@@ -1,9 +1,16 @@
+import Navbar from './components/Navbar/Navbar';
+import Sidebar from './components/sidebar/sidebar';
+
 const App = () => {
-  return(
+  return (
     <div>
-      App
+      <Navbar />
+      <hr />
+      <div className="app-content">
+        <Sidebar />
+      </div>
     </div>
-  )
+  );
 };
 
 export default App;
