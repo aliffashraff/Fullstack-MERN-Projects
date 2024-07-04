@@ -4,7 +4,7 @@ import { StatusCodes } from 'http-status-codes';
 // import model
 import FoodModel from '../models/FoodModel.js';
 
-// add food item
+// create food item
 const addFood = async (req, res) => {
   /* // using new FoodModel and await food.save()
   is good if want to manipulate the food instance 
@@ -40,7 +40,7 @@ const addFood = async (req, res) => {
     res.status(StatusCodes.CREATED).json({
       success: true,
       message: 'Food Added',
-      food,
+      data: food,
     });
   } catch (error) {
     res
@@ -49,4 +49,37 @@ const addFood = async (req, res) => {
   }
 };
 
-export { addFood };
+// get all food
+const getAllFood = async (req, res) => {
+  try {
+    const foods = await FoodModel.find().sort('-updatedAt');
+    res.status(StatusCodes.OK).json({ success: true, data: foods });
+  } catch (error) {
+    res
+      .status(StatusCodes.NOT_FOUND)
+      .json({ success: false, error: error.message });
+  }
+};
+
+// remove food item
+const deleteFood = async (req, res) => {
+  try {
+    // delete image from uploads file
+    const food = await FoodModel.findOne({ _id: req.body._id });
+    fs.unlink(`uploads/${food.image}`, () => {});
+
+    //delete from database
+    await FoodModel.findOneAndDelete({ _id: req.body._id });
+    const foods = await FoodModel.find().sort('-updated');
+    res
+      .status(StatusCodes.OK)
+      .json({ success: true, message: 'Food Removed', data: foods });
+  } catch (error) {
+    console.log(error);
+    res
+      .status(StatusCodes.NOT_FOUND)
+      .json({ success: false, error: error.message });
+  }
+};
+
+export { addFood, getAllFood, deleteFood };

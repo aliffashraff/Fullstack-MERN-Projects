@@ -1,5 +1,9 @@
 import express from 'express';
-import { addFood } from '../controllers/foodController.js';
+import {
+  addFood,
+  deleteFood,
+  getAllFood,
+} from '../controllers/foodController.js';
 // import multer to handle file uploads in Express app
 import multer from 'multer';
 
@@ -20,5 +24,8 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage });
 
 foodRouter.route('/add').post(upload.single('image'), addFood);
+foodRouter.route('/list').get(getAllFood);
+// using post method to delete
+foodRouter.route('/remove').post(deleteFood);
 
 export default foodRouter;

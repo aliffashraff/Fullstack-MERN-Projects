@@ -22,7 +22,7 @@ const FoodSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-});
+}, {timestamps: true});
 
 // checks if the model has already been defined before defining it again
 const FoodModel = mongoose.models.Food || mongoose.model('Food', FoodSchema);

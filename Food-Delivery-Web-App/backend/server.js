@@ -18,6 +18,7 @@ app.use(cors()); // can access backend from any frontend
 
 // routes
 app.use('/api/food', foodRouter);
+app.use('/images', express.static('uploads')); // mount the folder at the route to access the images in the browser eg: http://localhost:3000/images/1720031957221food_1.png
 
 // test API response
 app.get('/', (req, res) => {
