@@ -280,7 +280,18 @@
 ## Controllers
 
 1. to post to db, can use -> item = await Model.create or -> item = new Model and item.saved()
+2. Delete image using fs -> fs.unlink(`uploads/${food.image}`, () => {});
 
 ## Routes
 
 1. use multer to handle file request
+2. Delete from database using post method
+
+# Admin
+
+## Setup
+
+1. Create new Admin folder
+2. npm create vite@latest . -> without folder name
+3. setup components, assets, and pages folder
+4. install dependencies -> axios, react-toastify, react-router-dom
