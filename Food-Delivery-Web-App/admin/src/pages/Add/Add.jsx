@@ -35,7 +35,7 @@ const Add = () => {
     formData.append('image', image);
 
     try {
-      // api call
+      // api call - post data to backend
       const response = await axios.post(`${url}/api/food/add`, formData);
 
       // reset the data
