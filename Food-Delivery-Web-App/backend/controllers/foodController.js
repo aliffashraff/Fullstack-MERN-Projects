@@ -75,7 +75,6 @@ const deleteFood = async (req, res) => {
       .status(StatusCodes.OK)
       .json({ success: true, message: 'Food Removed', data: foods });
   } catch (error) {
-    console.log(error);
     res
       .status(StatusCodes.NOT_FOUND)
       .json({ success: false, message: 'Error', error: error.message });

@@ -34,22 +34,26 @@ const Add = () => {
     formData.append('category', data.category);
     formData.append('image', image);
 
-    // api call
-    const response = await axios.post(`${url}/api/food/add`, formData);
+    try {
+      // api call
+      const response = await axios.post(`${url}/api/food/add`, formData);
 
-    // reset the data
-    if (response.data.success) {
-      setData({
-        name: '',
-        description: '',
-        price: '',
-        category: 'Salad',
-      });
-      setImage(false);
-      // display message that was set from backend
-      toast.success(response.data.message);
-    } else {
-      toast.error(response.data)
+      // reset the data
+      if (response.data.success) {
+        setData({
+          name: '',
+          description: '',
+          price: '',
+          category: 'Salad',
+        });
+        setImage(false);
+        // display message that was set from backend
+        toast.success(response.data.message);
+      } else {
+        toast.error(response.data.message);
+      }
+    } catch (error) {
+      console.log(error);
     }
   };
 
