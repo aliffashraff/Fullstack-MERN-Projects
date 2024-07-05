@@ -4,6 +4,7 @@
   border: 1.5px solid #a9a9a9;
   border-top: 0;
   background-color: #f9f9f9;
+  font-size: max(1vw, 12px);
 }
 
 .sidebar-options {
@@ -12,16 +13,17 @@
   display: flex;
   flex-direction: column;
   gap: 20px;
-  font-size: 14px;
 }
 
 .sidebar-option {
   display: flex;
   align-items: center;
   gap: 12px;
-  padding: 12px 20px;
+  padding: 15px 10px;
+  border: 1px solid #a9a9a9;
+  border-radius: 3px 0px 0px 3px;
+  border-right: 0;
   cursor: pointer;
-  text-decoration: none;
   color: #333;
 }
 
@@ -33,4 +35,22 @@
   background-color: #fff0ed;
   border-left: 4px solid tomato;
   color: tomato;
+}
+
+@media (max-width: 700px) {
+  .sidebar-option p {
+    display: none;
+  }
+}
+
+@media (max-width: 400px) {
+  .sidebar-option img {
+    max-width: 22px;
+  }
+}
+
+@media (max-width: 300px) {
+  .sidebar-option img {
+    max-width: 15px;
+  }
 }

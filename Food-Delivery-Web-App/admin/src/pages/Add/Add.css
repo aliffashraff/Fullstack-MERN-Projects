@@ -9,6 +9,7 @@
 .add form {
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 20px;
 }
 
@@ -23,12 +24,13 @@
   border: 1px dashed #6d6d6d;
   width: 100%;
   max-width: 200px;
-  height: 100px;
   display: flex;
   justify-content: center;
   align-items: center;
   cursor: pointer;
   margin-bottom: 10px;
+  padding: 10px;
+  transition: max-width 0.3s;
 }
 
 .add-img-upload img {
@@ -41,6 +43,7 @@
 .add-category,
 .add-price {
   width: 100%;
+  transition: width 0.3s;
 }
 
 .add-product-name input,
@@ -73,26 +76,27 @@
   display: block;
   text-align: center;
   border-radius: 4px;
+  transition: max-width 0.3s;
 }
 
-@media (min-width: 600px) {
-  .add-category select,
-  .add-price input {
-    max-width: none;
-    flex: 1;
+@media (max-width: 1120px) {
+  .add-product-name,
+  .add-product-description,
+  .add-category,
+  .add-price {
+    width: 90%;
   }
 }
 
-@media (min-width: 768px) {
-  .add {
-    width: 70%;
-  }
-
+@media (max-width: 650px) {
   .add-img-upload label {
-    height: 150px;
+    width: 100%;
+    max-width: 150px;
   }
+}
 
+@media (max-width: 400px) {
   .add-button {
-    max-width: 120px;
+    max-width: 150px;
   }
 }
