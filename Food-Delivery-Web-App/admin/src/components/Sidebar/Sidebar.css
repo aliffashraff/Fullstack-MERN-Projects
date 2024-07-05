@@ -49,7 +49,7 @@
   }
 }
 
-@media (max-width: 300px) {
+@media (max-width: 320px) {
   .sidebar-option img {
     max-width: 15px;
   }

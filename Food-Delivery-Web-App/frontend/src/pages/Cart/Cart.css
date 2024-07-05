@@ -33,7 +33,11 @@
 .cart-items-item .cross {
   cursor: pointer;
   color: red;
-  font-size: max(1.8vw, 14px);
+  font-size: max(1.5vw, 14px);
+}
+
+.cart-items-item .cross:hover {
+  color: darkred;
 }
 
 .cart-bottom {
