@@ -40,7 +40,6 @@ const addFood = async (req, res) => {
     res.status(StatusCodes.CREATED).json({
       success: true,
       message: 'Food Added',
-      data: food,
     });
   } catch (error) {
     res
@@ -70,10 +69,7 @@ const deleteFood = async (req, res) => {
 
     //delete from database
     await FoodModel.findOneAndDelete({ _id: req.body._id });
-    const foods = await FoodModel.find().sort('-updated');
-    res
-      .status(StatusCodes.OK)
-      .json({ success: true, message: 'Food Removed', data: foods });
+    res.status(StatusCodes.OK).json({ success: true, message: 'Food Removed' });
   } catch (error) {
     res
       .status(StatusCodes.NOT_FOUND)
