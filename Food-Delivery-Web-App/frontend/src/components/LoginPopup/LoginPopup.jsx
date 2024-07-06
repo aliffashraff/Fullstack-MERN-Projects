@@ -61,8 +61,8 @@ const LoginPopup = ({ setShowLogin }) => {
           </p>
         ) : (
           <p className='login-popup-question'>
-            Create a new account?{' '}
-            <span onClick={() => setCurrentState('Sign Up')}>Click here</span>
+            Does not have an account?{' '}
+            <span onClick={() => setCurrentState('Sign Up')}>Register here</span>
           </p>
         )}
       </form>

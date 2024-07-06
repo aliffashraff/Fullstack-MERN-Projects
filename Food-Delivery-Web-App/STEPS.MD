@@ -295,3 +295,35 @@
 2. npm create vite@latest . -> without folder name
 3. setup components, assets, and pages folder
 4. install dependencies -> axios, react-toastify, react-router-dom
+
+# User Authentication
+
+## Setup
+
+1. create /register and /login endpoint for post method in the route folder
+2. create new route middelrware in server.js -> app.use('/api/user', userRouter);
+
+## Register user
+
+1. check if there is already a user with the email using .findOne
+2. check if user's email is a valid email -> if (!validator.isEmail)
+3. encrypt & hash user password
+   -> const salt = await bcrypt.genSalt(10);
+   ->const hashPassword = await bcrypt.hash(password, salt);
+4. create new user with name, email and hashpassword using .create
+5. create token
+   -> store JWT_SECRET in .env
+   -> const token = jwt.sign({ userId: newUser.\_id }, process.env.JWT_SECRET, {
+   expiresIn: process.env.JWT_LIFETIME,});
+6. assign token to response
+
+## User Login
+
+1. check user enter password and email
+2. check the email entered exist in the db using .findOne
+3. compare entered password with password in the db
+   -> const isPasswordMatch = await bcrypt.compare(password, user.password);
+   -> if (!isPasswordMatch) {
+   throw new Error('Invalid credentials. Please provide correct password');}
+4. create token
+5. assign token to response
