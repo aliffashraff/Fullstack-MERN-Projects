@@ -2,14 +2,15 @@
 import express from 'express';
 import cors from 'cors';
 import { StatusCodes } from 'http-status-codes';
-import { config } from 'dotenv';
+import { config } from 'dotenv'; // or import 'dotenv/config'
 
 // files
 import connectDB from './config/db.js';
 import foodRouter from './routes/foodRoute.js';
+import userRouter from './routes/userRoute.js';
 
 // configuration
-config();
+config(); // to use .env
 const app = express();
 
 // middlewares
@@ -19,6 +20,7 @@ app.use(cors()); // can access backend from any frontend
 // routes
 app.use('/api/food', foodRouter);
 app.use('/images', express.static('uploads')); // mount the folder at the route to access the images in the browser eg: http://localhost:3000/images/1720031957221food_1.png
+app.use('/api/user', userRouter);
 
 // test API response
 app.get('/', (req, res) => {
