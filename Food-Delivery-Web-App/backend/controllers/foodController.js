@@ -43,7 +43,7 @@ const addFood = async (req, res) => {
     });
   } catch (error) {
     res
-      .status(StatusCodes.INTERNAL_SERVER_ERROR)
+      .status(StatusCodes.BAD_REQUEST)
       .json({ success: false, message: 'Error', error: error.message });
   }
 };
