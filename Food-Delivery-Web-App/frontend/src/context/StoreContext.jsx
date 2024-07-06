@@ -1,5 +1,5 @@
 import { createContext, useEffect, useState } from 'react';
-import { food_list } from '../assets/assets';
+import axios from 'axios';
 
 // create context with null as default value
 export const StoreContext = createContext(null);
@@ -12,6 +12,8 @@ const StoreContextProvider = (props) => {
   const url = 'http://localhost:3000';
   // state to save token
   const [token, setToken] = useState('');
+  // state to store food from db
+  const [food_list, setFoodList] = useState([]);
 
   // add to cart function
   const addTocart = (itemId) => {
@@ -52,17 +54,36 @@ const StoreContextProvider = (props) => {
     return totalAmount;
   };
 
+  // get food list
+  const fetchFoodList = async () => {
+    try {
+      // get food from db
+      const response = await axios.get(`${url}/api/food/list`);
+
+      // set the food list in the state
+      setFoodList(response.data.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   // useEffect
   useEffect(
     () => {
       console.log(cartItems);
 
-      // to avoid logged out when refresh page
-      // when local storage with key name token exist
-      if (localStorage.getItem('token')) {
-        // get token from local storage and set token state to the 'token' key
-        setToken(localStorage.getItem('token'));
+      async function loadData() {
+        // load the food list
+        await fetchFoodList();
+
+        // to avoid logged out when refresh page
+        // when local storage with key name token exist
+        if (localStorage.getItem('token')) {
+          // get token from local storage and set token state to the 'token' key
+          setToken(localStorage.getItem('token'));
+        }
       }
+      loadData();
     },
     // run this function everytime cartItem state updated
     [cartItems]
