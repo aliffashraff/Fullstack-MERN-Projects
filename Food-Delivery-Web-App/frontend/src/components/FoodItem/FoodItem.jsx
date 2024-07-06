@@ -7,12 +7,18 @@ import { StoreContext } from '../../context/StoreContext';
 const FoodItem = ({ id, name, price, description, image }) => {
   // const [itemCount, setItemCount] = useState(0);
   // get values from context to add to cart
-  const { cartItems, addTocart, removeFromCart } = useContext(StoreContext);
+  const { cartItems, addTocart, removeFromCart, url } =
+    useContext(StoreContext);
 
   return (
     <div className="food-item">
       <div className="food-item-img-container">
-        <img className="food-item-image" src={image} alt="" />
+        <img
+          className="food-item-image"
+          // get image using the path + image name from db
+          src={url + '/images/' + image}
+          alt=""
+        />
         {/* functions without add to cart */}
         {/* {itemCount ? (
           <div className="food-item-counter">
