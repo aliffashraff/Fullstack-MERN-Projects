@@ -27,7 +27,6 @@ const UserSchema = new mongoose.Schema(
     },
   },
   {
-    timestamps: true,
     // to ensure we can set epmty object in the schema
     minimize: false,
   }
