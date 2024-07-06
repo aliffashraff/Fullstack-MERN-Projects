@@ -9,6 +9,7 @@ const createToken = (newUserId) => {
   const token = jwt.sign({ newUserId }, process.env.JWT_SECRET, {
     expiresIn: process.env.JWT_LIFETIME,
   });
+  return token;
 };
 
 // register
@@ -46,14 +47,14 @@ const registerUser = async (req, res) => {
 
     res.status(StatusCodes.OK).json({
       success: true,
-      message: 'User created',
+      message: 'Account Created',
       data: { user: { name: newUser.name } },
       token,
     });
   } catch (error) {
     res
       .status(StatusCodes.BAD_REQUEST)
-      .json({ success: false, message: 'Error', error: error.message });
+      .json({ success: false, message: error.message });
   }
 };
 
@@ -85,14 +86,14 @@ const loginUser = async (req, res) => {
 
     res.status(StatusCodes.OK).json({
       success: true,
-      message: 'User logged',
+      message: 'Login Successful',
       data: { user: { name: user.name } },
       token,
     });
   } catch (error) {
     res
       .status(StatusCodes.BAD_REQUEST)
-      .json({ success: false, message: 'Error', error: error.message });
+      .json({ success: false, message: error.message });
   }
 };
 
