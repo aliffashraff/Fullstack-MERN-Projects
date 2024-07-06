@@ -15,7 +15,7 @@ const App = () => {
 
   return (
     <>
-      <ToastContainer />
+      <ToastContainer autoClose={2000}/>
       {/* display popup on top of App if state = true */}
       {showLogin ? <LoginPopup setShowLogin={setShowLogin} /> : <></>}
       <div className="app">
