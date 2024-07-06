@@ -24,6 +24,7 @@ const Add = ({ url }) => {
   const onSubmitHandler = async (e) => {
     e.preventDefault();
 
+    // use formdata bcs of file upload
     // insert all the data in one form data
     const formData = new FormData();
     formData.append('name', data.name);
