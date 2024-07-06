@@ -13,12 +13,12 @@ const List = ({ url }) => {
       if (response.data.success) {
         setList(response.data.data);
         // console.log(list);
-      } else {
-        toast.error(response.data.message);
       }
     } catch (error) {
       console.log(error);
-      toast.error('Error');
+      toast.error(
+        `Error: ${error.response.data.message || 'Please try again later'}`
+      );
     }
   };
 
@@ -28,7 +28,7 @@ const List = ({ url }) => {
     // formData.append('_id', foodId);
 
     try {
-      const response = await axios.post(`${url}/api/food/remove`, {
+      const response = await axios.post(`${url}/api/food/remov`, {
         _id: foodId,
       });
       // update the list
@@ -36,12 +36,12 @@ const List = ({ url }) => {
 
       if (response.data.success) {
         toast.success(response.data.message);
-      } else {
-        toast.error(response.data.message);
       }
     } catch (error) {
       console.log(error);
-      toast.error('Error');
+      toast.error(
+        `Error: ${error.response.data.message || 'Please try again later'}`
+      );
     }
   };
 

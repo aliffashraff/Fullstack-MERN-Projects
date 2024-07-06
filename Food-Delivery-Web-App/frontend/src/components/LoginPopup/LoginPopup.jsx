@@ -49,7 +49,7 @@ const LoginPopup = ({ setShowLogin }) => {
         toast.success(response.data.message);
       }
     } catch (error) {
-      alert(`Error: ${error.response.data.message}`);
+      alert(`Error: ${error.response.data.message || 'Please try again later'}`);
     }
   };
 
