@@ -49,13 +49,15 @@ const LoginPopup = ({ setShowLogin }) => {
         toast.success(response.data.message);
       }
     } catch (error) {
-      alert(`Error: ${error.response.data.message || 'Please try again later'}`);
+      alert(
+        `Error: ${error.response.data.message || 'Please try again later'}`
+      );
     }
   };
 
   /* useEffect(() => {
-    console.log(data);
-  }, [data]); */
+    console.log();
+  }, []); */
 
   return (
     <div className="login-popup">
