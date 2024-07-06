@@ -6,13 +6,16 @@ import PlaceOrder from './pages/PlaceOrder/PlaceOrder';
 import Footer from './components/Footer/Footer';
 import { useState } from 'react';
 import LoginPopup from './components/LoginPopup/LoginPopup';
-import ScrollToTop from './components/ScrollToTop/ScrollToTop'
+import ScrollToTop from './components/ScrollToTop/ScrollToTop';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const App = () => {
   const [showLogin, setShowLogin] = useState(false);
 
   return (
     <>
+      <ToastContainer />
       {/* display popup on top of App if state = true */}
       {showLogin ? <LoginPopup setShowLogin={setShowLogin} /> : <></>}
       <div className="app">
