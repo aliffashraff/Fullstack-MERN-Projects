@@ -28,7 +28,7 @@ const List = ({ url }) => {
     // formData.append('_id', foodId);
 
     try {
-      const response = await axios.post(`${url}/api/food/remov`, {
+      const response = await axios.post(`${url}/api/food/remove`, {
         _id: foodId,
       });
       // update the list
