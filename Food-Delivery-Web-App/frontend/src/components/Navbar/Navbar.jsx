@@ -14,7 +14,7 @@ const Navbar = ({ setShowLogin }) => {
   const [isScrolled, setIsScrolled] = useState(false);
 
   // get context
-  const { getTotalCartAmount } = useContext(StoreContext);
+  const { getTotalCartAmount, token, setToken } = useContext(StoreContext);
 
   // make the header shadow visible when scrolled
   const handleScroll = () => {
@@ -82,8 +82,26 @@ const Navbar = ({ setShowLogin }) => {
           {/* if there are items in cart, the class 'dot' will be visible */}
           {getTotalCartAmount() > 0 ? <div className="dot"></div> : <></>}
         </div>
+        {/* if token exist change to profile image */}
+        {token ? (
+          <div className="navbar-profile">
+            <img src={assets.profile_icon} alt="" />
+            <ul className="nav-profile-dropdown">
+              <li>
+                <img src={assets.bag_icon} alt="" />
+                <p>Orders</p>
+              </li>
+              <hr />
+              <li>
+                <img src={assets.logout_icon} alt="" />
+                <p>Logout</p>
+              </li>
+            </ul>
+          </div>
+        ) : (
+          <button onClick={() => setShowLogin(true)}>Sign In</button>
+        )}
         {/* change state value to show popup */}
-        <button onClick={() => setShowLogin(true)}>Sign In</button>
       </div>
     </div>
   );
