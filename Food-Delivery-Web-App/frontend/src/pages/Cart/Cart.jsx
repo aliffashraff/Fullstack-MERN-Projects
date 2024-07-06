@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 
 const Cart = () => {
   // get context
-  const { cartItems, removeFromCart, food_list, getTotalCartAmount } =
+  const { cartItems, removeFromCart, food_list, getTotalCartAmount, url } =
     useContext(StoreContext);
 
   // use useNavigate to navigate when clicking buttons, not use Link bcs its not a link, but a button
@@ -37,7 +37,7 @@ const Cart = () => {
               <React.Fragment key={item._id}>
                 {/* display cart items */}
                 <div className="cart-items-title cart-items-item">
-                  <img src={item.image} alt="" />
+                  <img src={url + '/images/' + item.image} alt="" />
                   <p>{item.name}</p>
                   <p>${itemPrice}</p>
                   <p>{itemQuantity}</p>
