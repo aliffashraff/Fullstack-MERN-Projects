@@ -3,7 +3,7 @@ import { useContext, useEffect, useState } from 'react';
 import { assets } from '../../assets/assets';
 // import css
 import './Navbar.css';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 // install react-router-hash-link first
 import { HashLink } from 'react-router-hash-link';
 import { StoreContext } from '../../context/StoreContext';
@@ -15,6 +15,16 @@ const Navbar = ({ setShowLogin }) => {
 
   // get context
   const { getTotalCartAmount, token, setToken } = useContext(StoreContext);
+
+  const navigate = useNavigate();
+
+  const logout = () => {
+    // remove token from local storage
+    localStorage.removeItem('token');
+    setToken('');
+    // navigate to home
+    navigate('/');
+  };
 
   // make the header shadow visible when scrolled
   const handleScroll = () => {
@@ -92,7 +102,7 @@ const Navbar = ({ setShowLogin }) => {
                 <p>Orders</p>
               </li>
               <hr />
-              <li>
+              <li onClick={() => logout()}>
                 <img src={assets.logout_icon} alt="" />
                 <p>Logout</p>
               </li>
