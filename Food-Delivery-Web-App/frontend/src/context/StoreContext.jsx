@@ -56,6 +56,13 @@ const StoreContextProvider = (props) => {
   useEffect(
     () => {
       console.log(cartItems);
+
+      // to avoid logged out when refresh page
+      // when local storage with key name token exist
+      if (localStorage.getItem('token')) {
+        // get token from local storage and set token state to the 'token' key
+        setToken(localStorage.getItem('token'));
+      }
     },
     // run this function everytime cartItem state updated
     [cartItems]
