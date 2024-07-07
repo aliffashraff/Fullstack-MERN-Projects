@@ -1,8 +1,8 @@
 import UserModel from '../models/UserModel.js';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
-import valdator from 'validator';
 import { StatusCodes } from 'http-status-codes';
+// to validate email & etc format
 import validator from 'validator';
 
 const createToken = (userId) => {
