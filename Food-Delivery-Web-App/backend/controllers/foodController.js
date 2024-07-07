@@ -42,13 +42,12 @@ const addFood = async (req, res) => {
       message: 'Food Added',
     });
   } catch (error) {
-    res
-      .status(StatusCodes.BAD_REQUEST)
-      .json({
-        success: false,
-        message: 'Unable to Add Food',
-        error: error.message,
-      });
+    console.log(error);
+    res.status(StatusCodes.BAD_REQUEST).json({
+      success: false,
+      message: 'Unable to Add Food',
+      error: error.message,
+    });
   }
 };
 
@@ -58,9 +57,12 @@ const getAllFood = async (req, res) => {
     const foods = await FoodModel.find().sort('-updatedAt');
     res.status(StatusCodes.OK).json({ success: true, data: foods });
   } catch (error) {
-    res
-      .status(StatusCodes.NOT_FOUND)
-      .json({ success: false, message: 'Unable to Load Food List', error: error.message });
+    console.log(error);
+    res.status(StatusCodes.NOT_FOUND).json({
+      success: false,
+      message: 'Unable to Load Food List',
+      error: error.message,
+    });
   }
 };
 
@@ -75,13 +77,12 @@ const deleteFood = async (req, res) => {
     await FoodModel.findOneAndDelete({ _id: req.body._id });
     res.status(StatusCodes.OK).json({ success: true, message: 'Food Removed' });
   } catch (error) {
-    res
-      .status(StatusCodes.NOT_FOUND)
-      .json({
-        success: false,
-        message: 'Unable to Remove Food',
-        error: error.message,
-      });
+    console.log(error);
+    res.status(StatusCodes.NOT_FOUND).json({
+      success: false,
+      message: 'Unable to Remove Food',
+      error: error.message,
+    });
   }
 };
 

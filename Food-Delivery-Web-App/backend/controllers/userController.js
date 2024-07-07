@@ -53,6 +53,7 @@ const registerUser = async (req, res) => {
       token,
     });
   } catch (error) {
+    console.log(error);
     res.status(StatusCodes.BAD_REQUEST).json({
       success: false,
       message: error.message || 'Unable to Register User',
@@ -93,6 +94,7 @@ const loginUser = async (req, res) => {
       token,
     });
   } catch (error) {
+    console.log(error);
     res
       .status(StatusCodes.BAD_REQUEST)
       .json({ success: false, message: error.message || 'Login Failed' });
