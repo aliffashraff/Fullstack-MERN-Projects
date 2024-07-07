@@ -1,6 +1,5 @@
 import jwt from 'jsonwebtoken';
 import { StatusCodes } from 'http-status-codes';
-import UserModel from '../models/UserModel.js';
 
 const authMiddleware = async (req, res, next) => {
   // in frontend, before making a request, the token is put from localstorage to the headers
