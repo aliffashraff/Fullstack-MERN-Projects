@@ -44,7 +44,11 @@ const addFood = async (req, res) => {
   } catch (error) {
     res
       .status(StatusCodes.BAD_REQUEST)
-      .json({ success: false, message: 'Error', error: error.message });
+      .json({
+        success: false,
+        message: 'Unable to Add Food',
+        error: error.message,
+      });
   }
 };
 
@@ -56,7 +60,7 @@ const getAllFood = async (req, res) => {
   } catch (error) {
     res
       .status(StatusCodes.NOT_FOUND)
-      .json({ success: false, message: 'Error', error: error.message });
+      .json({ success: false, message: 'Unable to Load Food List', error: error.message });
   }
 };
 
@@ -73,7 +77,11 @@ const deleteFood = async (req, res) => {
   } catch (error) {
     res
       .status(StatusCodes.NOT_FOUND)
-      .json({ success: false, message: 'Error', error: error.message });
+      .json({
+        success: false,
+        message: 'Unable to Remove Food',
+        error: error.message,
+      });
   }
 };
 
