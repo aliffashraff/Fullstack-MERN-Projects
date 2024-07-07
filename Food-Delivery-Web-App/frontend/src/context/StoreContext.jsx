@@ -16,7 +16,7 @@ const StoreContextProvider = (props) => {
   const [food_list, setFoodList] = useState([]);
 
   // add to cart function
-  const addTocart = (itemId) => {
+  const addTocart = async (itemId) => {
     // use [] bcs itemId is a variable
     if (!cartItems[itemId]) {
       // if user first time adding item in the cart, it will create new entry in the cartItems
@@ -28,11 +28,39 @@ const StoreContextProvider = (props) => {
         [itemId]: current[itemId] + 1,
       }));
     }
+
+    try {
+      // if token exist, update the the cart items to db
+      //  provide itemId: in req.body
+      // include token for authorization
+      if (token) {
+        await axios.post(
+          `${url}/api/cart/add`,
+          { itemId },
+          { headers: { token } }
+        );
+      }
+    } catch (error) {
+      console.log(error.response.data.message);
+    }
   };
 
   // remove from cart function
-  const removeFromCart = (itemId) => {
+  const removeFromCart = async (itemId) => {
     setCartItems((current) => ({ ...current, [itemId]: current[itemId] - 1 }));
+
+    try {
+      // if token exist, update the the cart items to db
+      if (token) {
+        await axios.post(
+          `${url}/api/cart/remove`,
+          { itemId },
+          { headers: { token } }
+        );
+      }
+    } catch (error) {
+      console.log(error.response.data.message);
+    }
   };
 
   // cart total function
@@ -63,14 +91,28 @@ const StoreContextProvider = (props) => {
       // set the food list in the state
       setFoodList(response.data.data);
     } catch (error) {
-      console.log(error);
+      console.log(error.response.data.message);
+    }
+  };
+
+  // get the cart to avoid cart reset when refresh
+  const loadCartData = async (token) => {
+    try {
+      const response = await axios.get(`${url}/api/cart/get`, {
+        headers: { token },
+      });
+
+      // update cartItems with the data from db
+      setCartItems(response.data.data);
+    } catch (error) {
+      console.log(error.response.data.message);
     }
   };
 
   // useEffect
   useEffect(
     () => {
-      console.log(cartItems);
+      // console.log(cartItems);
 
       async function loadData() {
         // load the food list
@@ -81,6 +123,9 @@ const StoreContextProvider = (props) => {
         if (localStorage.getItem('token')) {
           // get token from local storage and set token state to the 'token' key
           setToken(localStorage.getItem('token'));
+
+          // load cart by passing token from localstorage
+          await loadCartData(localStorage.getItem('token'));
         }
       }
       loadData();
@@ -102,6 +147,7 @@ const StoreContextProvider = (props) => {
     url,
     token,
     setToken,
+    loadCartData,
   };
 
   return (
