@@ -5,8 +5,9 @@ import valdator from 'validator';
 import { StatusCodes } from 'http-status-codes';
 import validator from 'validator';
 
-const createToken = (newUserId) => {
-  const token = jwt.sign({ newUserId }, process.env.JWT_SECRET, {
+const createToken = (userId) => {
+  // pass user id to the token as payload using .sign
+  const token = jwt.sign({ userId }, process.env.JWT_SECRET, {
     expiresIn: process.env.JWT_LIFETIME,
   });
   return token;
