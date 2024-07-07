@@ -49,12 +49,12 @@ const Add = ({ url }) => {
         setImage(false);
         // display message that was set from backend
         toast.success(response.data.message);
-      } else {
-        toast.error(response.data.message);
       }
     } catch (error) {
       console.log(error);
-      toast.error('Error');
+      toast.error(
+        `Error: ${error.response.data.message || 'Please Try Again Later'}`
+      );
     }
   };
 

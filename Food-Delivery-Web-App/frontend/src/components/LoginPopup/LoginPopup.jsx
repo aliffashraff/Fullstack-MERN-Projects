@@ -50,7 +50,7 @@ const LoginPopup = ({ setShowLogin }) => {
       }
     } catch (error) {
       alert(
-        `Error: ${error.response.data.message || 'Please try again later'}`
+        `Error: ${error.response.data.message || 'Please Try Again Later'}`
       );
     }
   };

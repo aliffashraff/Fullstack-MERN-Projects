@@ -17,7 +17,7 @@ const List = ({ url }) => {
     } catch (error) {
       console.log(error);
       toast.error(
-        `Error: ${error.response.data.message || 'Please try again later'}`
+        `Error: ${error.response.data.message || 'Please Try Again Later'}`
       );
     }
   };
@@ -40,7 +40,7 @@ const List = ({ url }) => {
     } catch (error) {
       console.log(error);
       toast.error(
-        `Error: ${error.response.data.message || 'Please try again later'}`
+        `Error: ${error.response.data.message || 'PPlease Try Again Later'}`
       );
     }
   };

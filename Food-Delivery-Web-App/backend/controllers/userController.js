@@ -21,15 +21,15 @@ const registerUser = async (req, res) => {
     // check if there is already a user with the email
     const userExist = await UserModel.findOne({ email });
     if (userExist) {
-      throw new Error('User already exist');
+      throw new Error('User Already Exist');
     }
     // check if user's email is a valid email
     if (!validator.isEmail) {
-      throw new Error('Please provide valid email');
+      throw new Error('Please Provide Valid Email');
     }
     // check for strong password
     if (password.length < 8) {
-      throw new Error('Please provide strong password');
+      throw new Error('Please Provide Strong Password');
     }
 
     //encrypt & hash user password
@@ -67,20 +67,20 @@ const loginUser = async (req, res) => {
   try {
     // check email and password not empty
     if (!email || !password) {
-      throw new Error('Please provide email and password');
+      throw new Error('Please Provide Email and Password');
     }
 
     const user = await UserModel.findOne({ email });
 
     // check if there is a user with the email
     if (!user) {
-      throw new Error('User not found. Please register');
+      throw new Error('User Not Found');
     }
 
     // compare entered password with the password in the db
     const isPasswordMatch = await bcrypt.compare(password, user.password);
     if (!isPasswordMatch) {
-      throw new Error('Invalid credentials. Please provide correct password');
+      throw new Error('Invalid Credentials. Please Provide Correct Password');
     }
 
     // create token
