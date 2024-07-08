@@ -1,5 +1,6 @@
 .place-order {
   display: flex;
+  flex-direction: row;
   align-items: start;
   justify-content: space-between;
   gap: 50px;
@@ -26,7 +27,6 @@
   outline-color: tomato;
 }
 
-/* create 2 fields in one line */
 .place-order-left .multi-fields {
   display: flex;
   gap: 10px;
@@ -39,4 +39,40 @@
 
 .place-order .cart-total button {
   margin-top: 30px;
+}
+
+/* Media query for screens less than 768px */
+@media (max-width: 510px) {
+  .place-order {
+    flex-direction: column;
+    gap: 30px;
+  }
+
+  .place-order-left,
+  .place-order-right {
+    max-width: 100%;
+  }
+
+  .place-order-left .multi-fields {
+    flex-direction: column;
+  }
+
+  .place-order-left input,
+  .place-order .cart-total button {
+    font-size: 14px;
+    padding: 8px;
+  }
+}
+
+/* Media query for screens less than 480px */
+@media (max-width: 300px) {
+  .place-order-left .title {
+    font-size: 24px;
+  }
+
+  .place-order-left input,
+  .place-order .cart-total button {
+    font-size: 12px;
+    padding: 6px;
+  }
 }
