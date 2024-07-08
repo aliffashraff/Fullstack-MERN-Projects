@@ -1,0 +1,37 @@
+.admin-panel-home {
+  width: 80%;
+  max-width: 1200px;
+  margin: 50px auto;
+  text-align: center;
+}
+
+.admin-panel-home h1 {
+  font-size: 32px;
+  color: #333;
+  margin-bottom: 40px;
+}
+
+.admin-panel-links {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+}
+
+.admin-link {
+  display: inline-block;
+  padding: 15px 30px;
+  font-size: 18px;
+  color: #fff;
+  background-color: tomato;
+  text-decoration: none;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+  margin-bottom: 15px;
+}
+
+.admin-link:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  background-color: rgb(229, 76, 49);
+}
