@@ -110,29 +110,26 @@ const StoreContextProvider = (props) => {
   };
 
   // useEffect
-  useEffect(
-    () => {
-      // console.log(cartItems);
+  useEffect(() => {
+    // console.log(cartItems);
 
-      async function loadData() {
-        // load the food list
-        await fetchFoodList();
+    async function loadData() {
+      // load the food list
+      await fetchFoodList();
 
-        // to avoid logged out when refresh page
-        // when local storage with key name token exist
-        if (localStorage.getItem('token')) {
-          // get token from local storage and set token state to the 'token' key
-          setToken(localStorage.getItem('token'));
+      const storedToken = localStorage.getItem('token');
+      // to avoid logged out when refresh page
+      // when local storage with key name token exist
+      if (storedToken) {
+        // get token from local storage and set token state to the 'token' key
+        setToken(storedToken);
 
-          // load cart by passing token from localstorage
-          await loadCartData(localStorage.getItem('token'));
-        }
+        // load cart by passing token from localstorage
+        await loadCartData(storedToken);
       }
-      loadData();
-    },
-    // run this function everytime cartItem state updated
-    [cartItems]
-  );
+    }
+    loadData();
+  }, []);
 
   // anything in the context value can be accesed by any component if it is within the provider
   const contextValue = {
