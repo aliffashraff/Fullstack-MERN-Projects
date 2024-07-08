@@ -78,7 +78,7 @@ const removeFromCart = async (req, res) => {
 // fetch user cart
 const getCart = async (req, res) => {
   try {
-    const { userId, itemId } = req.body;
+    const { userId } = req.body;
 
     const userData = await UserModel.findOne({ _id: userId }).select(
       '-password'
