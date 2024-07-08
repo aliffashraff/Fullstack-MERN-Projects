@@ -57,7 +57,8 @@ const MyOrders = () => {
               <span>&#x25cf;</span>&nbsp;
               <b>{order.status}</b>
             </p>
-            <button>Track Order</button>
+            {/* will display the status */}
+            <button onClick={fetchOrders}>Track Order</button>
           </div>
         ))}
       </div>
