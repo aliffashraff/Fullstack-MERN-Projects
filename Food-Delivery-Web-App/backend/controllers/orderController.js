@@ -3,6 +3,8 @@ import { StatusCodes } from 'http-status-codes';
 import Stripe from 'stripe';
 import OrderModel from '../models/OrderModel.js';
 import UserModel from '../models/UserModel.js';
+import { config } from 'dotenv';
+config();
 
 // setup stripe
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
@@ -11,7 +13,7 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 const placeOrder = async (req, res) => {
   const { userId, items, amount, address, status, date, payment } = req.body;
 
-  const frontendUrl = 'http://localhost:5173/';
+  const frontendUrl = 'http://localhost:5173';
 
   try {
     // create and save order in db
@@ -30,32 +32,33 @@ const placeOrder = async (req, res) => {
     );
 
     // create stripe payment link
-    
+
+    // stripe use snake_case
     // create line items from the user order for stripe
     // use impicit return (), so no need to use return
-    const lineItems = items.map((item) => ({
-      priceData: {
+    const line_items = items.map((item) => ({
+      price_data: {
         currency: 'myr',
-        productData: { name: item.name },
+        product_data: { name: item.name },
         // unit amount converted from us dollar to myr
-        unitAmount: item.price * 100 * 4,
+        unit_amount: item.price * 100 * 4,
       },
       quantity: item.quantity,
     }));
 
     // push delivery charge to lineItems
-    lineItems.push({
-      priceData: {
+    line_items.push({
+      price_data: {
         currency: 'myr',
-        productData: { name: 'Deliver Charges' },
-        unitAmount: 2 * 100 * 4,
+        product_data: { name: 'Delivery Charges' },
+        unit_amount: 2 * 100 * 4,
       },
       quantity: 1,
     });
 
     // create session
     const session = await stripe.checkout.sessions.create({
-      line_items: lineItems,
+      line_items,
       mode: 'payment',
       // if payment success, will be directed to the url
       success_url: `${frontendUrl}/verify?success=true&orderId=${order._id}`,
@@ -64,15 +67,15 @@ const placeOrder = async (req, res) => {
 
     res.status(StatusCodes.OK).json({
       success: true,
-      sessionUrl: session.url,
-      message: 'Order Created',
-      data: cart,
+      // direct to url of success
+      session_url: session.url,
+      message: 'Directed to Payment Gateway',
     });
   } catch (error) {
     console.log(error);
     res.status(StatusCodes.BAD_REQUEST).json({
-      succes: false,
-      message: 'Failed to Create Order',
+      success: false,
+      message: 'Failed to Proceed to Payment',
       error: error.message,
     });
   }
