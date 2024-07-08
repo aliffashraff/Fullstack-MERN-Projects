@@ -132,10 +132,30 @@ const userOrders = async (req, res) => {
     console.log(error);
     res.status(StatusCodes.NOT_FOUND).json({
       success: false,
-      message: 'Not Able to Loas User Order',
+      message: 'Not Able to Load User Orders',
       error: error.message,
     });
   }
 };
 
-export { placeOrder, verifyOrder, userOrders };
+// list users orders for admin panel
+const listOrders = async (req, res) => {
+  try {
+    const orders = await OrderModel.find();
+
+    res.status(StatusCodes.OK).json({
+      success: true,
+      message: 'List All Orders',
+      data: orders,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(StatusCodes.NOT_FOUND).json({
+      success: false,
+      message: 'Failed to Load All Orders',
+      error: error.message,
+    });
+  }
+};
+
+export { placeOrder, verifyOrder, userOrders, listOrders };
