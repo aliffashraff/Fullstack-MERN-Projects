@@ -150,7 +150,7 @@ const listOrders = async (req, res) => {
     });
   } catch (error) {
     console.log(error);
-    res.status(StatusCodes.NOT_FOUND).json({
+    res.status(StatusCodes.BAD_REQUEST).json({
       success: false,
       message: 'Failed to Load All Orders',
       error: error.message,
@@ -158,4 +158,28 @@ const listOrders = async (req, res) => {
   }
 };
 
-export { placeOrder, verifyOrder, userOrders, listOrders };
+// update order status by admin
+const updateStatus = async (req, res) => {
+  const { orderId, status } = req.body;
+  try {
+    await OrderModel.findOneAndUpdate(
+      { _id: orderId },
+      { status },
+      { new: true, runValidators: true }
+    );
+
+    res.status(StatusCodes.OK).json({
+      success: true,
+      message: 'Status Updated',
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(StatusCodes.BAD_REQUEST).json({
+      success: false,
+      message: 'Failed to Update Status',
+      error: error.message,
+    });
+  }
+};
+
+export { placeOrder, verifyOrder, userOrders, listOrders, updateStatus };
