@@ -3,6 +3,7 @@ import './PlaceOrder.css';
 import { StoreContext } from '../../context/StoreContext';
 import axios from 'axios';
 import { toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
 
 const PlaceOrder = () => {
   const { getTotalCartAmount, token, food_list, cartItems, url } =
@@ -34,7 +35,7 @@ const PlaceOrder = () => {
     // store the ordered items
     let orderItems = [];
 
-    food_list.map((item) => {
+    food_list.forEach((item) => {
       // if itemId in cartItems match
       if (cartItems[item._id] > 0) {
         let itemInfo = { ...item };
@@ -73,9 +74,18 @@ const PlaceOrder = () => {
     }
   };
 
-  /* useEffect(() => {
-    console.log(data);
-  }, [data]); */
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    // make the page only available when logged in
+    if (!token) {
+      navigate('/cart');
+    }
+    // if cart = 0
+    else if (getTotalCartAmount() <= 0) {
+      navigate('/cart');
+    }
+  }, [token]);
 
   return (
     <form action="" className="place-order" onSubmit={placeOrder}>
