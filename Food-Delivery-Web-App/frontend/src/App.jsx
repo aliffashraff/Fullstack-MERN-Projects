@@ -3,6 +3,7 @@ import Navbar from './components/Navbar/Navbar';
 import Home from './pages/Home/Home';
 import Cart from './pages/Cart/Cart';
 import PlaceOrder from './pages/PlaceOrder/PlaceOrder';
+import Verify from './pages/Verify/Verify';
 import Footer from './components/Footer/Footer';
 import { useState } from 'react';
 import LoginPopup from './components/LoginPopup/LoginPopup';
@@ -15,7 +16,7 @@ const App = () => {
 
   return (
     <>
-      <ToastContainer autoClose={2000}/>
+      <ToastContainer autoClose={2000} />
       {/* display popup on top of App if state = true */}
       {showLogin ? <LoginPopup setShowLogin={setShowLogin} /> : <></>}
       <div className="app">
@@ -25,10 +26,11 @@ const App = () => {
         <Navbar setShowLogin={setShowLogin} />
         {/* use Routes tag to create multiple routes*/}
         <Routes>
-          {/* set the path of the page component */}
+          {/* set the route of the page component */}
           <Route path="/" element={<Home />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/order" element={<PlaceOrder />} />
+          <Route path="/verify" element={<Verify />} />
         </Routes>
       </div>
       <Footer />
