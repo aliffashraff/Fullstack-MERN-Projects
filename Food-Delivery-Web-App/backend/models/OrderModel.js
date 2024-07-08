@@ -2,6 +2,7 @@ import mongoose from 'mongoose';
 
 const OrderSchema = new mongoose.Schema(
   {
+    // get userId from token - auth middleware
     userId: {
       type: String,
       required: true,
@@ -10,6 +11,7 @@ const OrderSchema = new mongoose.Schema(
       type: Array,
       required: true,
     },
+    // total price
     amount: {
       type: Number,
       required: true,
