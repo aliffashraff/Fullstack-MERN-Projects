@@ -5,6 +5,6 @@ import authMiddleware from '../middlewares/authMiddleware.js';
 const orderRouter = express.Router();
 
 orderRouter.route('/place').post(authMiddleware, placeOrder);
-orderRouter.route('/verify').post(authMiddleware, verifyOrder);
+orderRouter.route('/verify').post(verifyOrder);
 
 export default orderRouter;
