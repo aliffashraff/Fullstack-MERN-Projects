@@ -89,7 +89,7 @@ const verifyOrder = async (req, res) => {
 
   try {
     // true is string bcs when requst made from frontend, it will be passed as string
-    if ((success = 'true')) {
+    if (success === 'true') {
       // change payment to true
       await OrderModel.findOneAndUpdate(
         { _id: orderId },
@@ -99,13 +99,13 @@ const verifyOrder = async (req, res) => {
 
       res.status(StatusCodes.OK).json({
         success: true,
-        message: 'Paid Successful',
+        message: 'Payment Successful, Order Created',
       });
     } else {
       // delete the order if success false
       await OrderModel.findOneAndDelete({ _id: orderId });
 
-      throw new Error('Payment Canceled');
+      throw new Error('Order Cancelled');
     }
   } catch (error) {
     console.log(error);
