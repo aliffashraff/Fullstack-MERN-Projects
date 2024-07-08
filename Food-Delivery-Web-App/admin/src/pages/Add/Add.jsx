@@ -60,6 +60,7 @@ const Add = ({ url }) => {
 
   return (
     <div className="add">
+      <h3>Add Food</h3>
       <form className="flex-col" onSubmit={onSubmitHandler}>
         <div className="add-img-upload flex-col">
           <p>Upload Image</p>

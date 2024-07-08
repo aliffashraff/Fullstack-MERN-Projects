@@ -7,6 +7,13 @@
   align-items: center;
 }
 
+.list h3 {
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 24px;
+  color: #333;
+}
+
 .list-table-format {
   display: grid;
   grid-template-columns: 0.5fr 2fr 1fr 1fr 0.5fr;
@@ -17,6 +24,14 @@
   border: 1px solid #cacaca;
   font-size: 13px;
   width: 70vw;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* except .title */
+.list-table-format:not(.title):hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  border: 1px solid tomato;
 }
 
 .list-table-format.title {
@@ -34,20 +49,20 @@
 .cursor {
   cursor: pointer;
   color: red;
-  font-size: 17px;
+  font-size: 20px;
   background-color: #6d6d6d;
   display: contents;
 }
 
 .cursor:hover {
-  color: darkred; /* Darker color on hover */
+  color: darkred;
 }
 
 @media (max-width: 600px) {
   .list-table-format {
-    grid-template-columns: 1fr 2fr 1fr; /* Adjusted for smaller screens */
-    gap: 10px; /* Adjusted gap */
-    font-size: 14px; /* Slightly larger font for readability */
+    grid-template-columns: 1fr 2fr 1fr;
+    gap: 10px;
+    font-size: 14px;
   }
 
   .list-table-format.title {
@@ -56,10 +71,16 @@
 
   .list-table-format img {
     width: 40px;
-    height: 40px; /* Smaller image size for smaller screens */
+    height: 40px;
   }
 
   .list-table-format p {
-    margin: 5px 0; /* Adding margin for better spacing */
+    margin: 5px 0;
   }
 }
+@media (max-width: 370px) {
+  .list-table-format {
+    grid-template-columns: 1fr;
+  }
+}
+
