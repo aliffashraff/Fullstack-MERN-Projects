@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import './List.css';
 import axios from 'axios';
 import { toast } from 'react-toastify';
+import Sidebar from '../../components/Sidebar/Sidebar';
 
 const List = ({ url }) => {
   const [list, setList] = useState([]);
@@ -50,36 +51,39 @@ const List = ({ url }) => {
   }, []);
 
   return (
-    <div className="list add flex-col">
-      <h3>Food List</h3>
-      <div className="list-table">
-        <div className="list-table-format title">
-          <b>Image</b>
-          <b>Name</b>
-          <b>Category</b>
-          <b>Price</b>
-          <b>Action</b>
+    <>
+      <Sidebar />
+      <div className="list add flex-col">
+        <h3>Food List</h3>
+        <div className="list-table">
+          <div className="list-table-format title">
+            <b>Image</b>
+            <b>Name</b>
+            <b>Category</b>
+            <b>Price</b>
+            <b>Action</b>
+          </div>
+          {list.map((item) => {
+            return (
+              <div key={item._id} className="list-table-format">
+                <img src={`${url}/images/${item.image}`} alt="" />
+                <p>{item.name}</p>
+                <p>{item.category}</p>
+                <p>${item.price}</p>
+                <p
+                  className="cursor"
+                  onClick={() => {
+                    removeFood(item._id);
+                  }}
+                >
+                  x
+                </p>
+              </div>
+            );
+          })}
         </div>
-        {list.map((item) => {
-          return (
-            <div key={item._id} className="list-table-format">
-              <img src={`${url}/images/${item.image}`} alt="" />
-              <p>{item.name}</p>
-              <p>{item.category}</p>
-              <p>${item.price}</p>
-              <p
-                className="cursor"
-                onClick={() => {
-                  removeFood(item._id);
-                }}
-              >
-                x
-              </p>
-            </div>
-          );
-        })}
       </div>
-    </div>
+    </>
   );
 };
 
