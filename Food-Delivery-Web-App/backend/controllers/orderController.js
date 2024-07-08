@@ -18,6 +18,7 @@ const placeOrder = async (req, res) => {
   try {
     // create and save order in db
     const order = await OrderModel.create({
+      // userId get from auth middleware
       userId,
       items,
       amount,
@@ -56,8 +57,9 @@ const placeOrder = async (req, res) => {
       quantity: 1,
     });
 
-    // create session
+    // create session -
     const session = await stripe.checkout.sessions.create({
+      // displayed the ordered items in stripe url session
       line_items,
       mode: 'payment',
       // if payment success, will be directed to the url
@@ -67,7 +69,7 @@ const placeOrder = async (req, res) => {
 
     res.status(StatusCodes.OK).json({
       success: true,
-      // direct to url of success
+      // direct to stripe url
       session_url: session.url,
       message: 'Directed to Payment Gateway',
     });
