@@ -11,7 +11,7 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
 // place user order for frontend
 const placeOrder = async (req, res) => {
-  const { userId, items, amount, address, status, date, payment } = req.body;
+  const { userId, items, amount, address } = req.body;
 
   const frontendUrl = 'http://localhost:5173';
 
@@ -116,4 +116,26 @@ const verifyOrder = async (req, res) => {
   }
 };
 
-export { placeOrder, verifyOrder };
+// user orders for frontend
+const userOrders = async (req, res) => {
+  try {
+    const { userId } = req.body;
+
+    const orders = await OrderModel.find({ userId }).sort('-updatedAt');
+
+    res.status(StatusCodes.OK).json({
+      success: true,
+      message: 'Get User Orders',
+      data: orders,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(StatusCodes.NOT_FOUND).json({
+      success: false,
+      message: 'Not Able to Loas User Order',
+      error: error.message,
+    });
+  }
+};
+
+export { placeOrder, verifyOrder, userOrders };
