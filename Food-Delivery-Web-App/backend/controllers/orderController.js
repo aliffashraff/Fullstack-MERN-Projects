@@ -83,4 +83,37 @@ const placeOrder = async (req, res) => {
   }
 };
 
-export { placeOrder };
+// temporary verification function - proper way to use webhook
+const verifyOrder = async (req, res) => {
+  const { orderId, success } = req.body;
+
+  try {
+    // true is string bcs when requst made from frontend, it will be passed as string
+    if ((success = 'true')) {
+      // change payment to true
+      await OrderModel.findOneAndUpdate(
+        { _id: orderId },
+        { payment: true },
+        { new: true, runValidators: true }
+      );
+
+      res.status(StatusCodes.OK).json({
+        success: true,
+        message: 'Paid Successful',
+      });
+    } else {
+      // delete the order if success false
+      await OrderModel.findOneAndDelete({ _id: orderId });
+
+      throw new Error('Payment Canceled');
+    }
+  } catch (error) {
+    console.log(error);
+    res.status(StatusCodes.BAD_REQUEST).json({
+      success: false,
+      message: error.message || 'Payment Failed',
+    });
+  }
+};
+
+export { placeOrder, verifyOrder };
