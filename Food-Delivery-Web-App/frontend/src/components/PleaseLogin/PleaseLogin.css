@@ -1,5 +1,4 @@
-.empty-cart-container,
-.please-login-container {
+.empty-cart-container {
   text-align: center;
   padding: 20px;
   border: 1px solid #ccc;
@@ -11,21 +10,18 @@
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-.empty-cart-container h2,
-.please-login-container h2 {
+.empty-cart-container h2 {
   font-size: 1.5rem;
   color: white;
   margin-bottom: 10px;
 }
 
-.empty-cart-container p,
-.please-login-container p {
+.empty-cart-container p {
   font-size: 1rem;
   color: white;
 }
 
-.empty-cart-container button,
-.please-login-container button {
+.empty-cart-container button {
   padding: 10px 20px;
   margin-top: 20px;
   background-color: white;
@@ -38,7 +34,6 @@
   color: black;
 }
 
-.empty-cart-container button:hover,
-.please-login-container button:hover {
+.empty-cart-container button:hover {
   color: tomato;
 }
