@@ -75,6 +75,10 @@
   cursor: pointer;
 }
 
+.cart-total button:hover {
+  background-color: rgb(229, 76, 49);
+}
+
 .cart-promo-code {
   flex: 1;
 }
@@ -106,6 +110,7 @@
   border: none;
   color: white;
   border-radius: 4px;
+  cursor: pointer;
 }
 
 @media (max-width: 750px) {
