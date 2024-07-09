@@ -118,7 +118,12 @@ const Navbar = ({ setShowLogin }) => {
                 <p className={menu === 'orders' ? 'active' : ''}>Orders</p>
               </li>
               <hr />
-              <li onClick={() => logout()}>
+              <li
+                onClick={() => {
+                  setMenu('home');
+                  logout();
+                }}
+              >
                 <img src={assets.logout_icon} alt="" />
                 <p>Logout</p>
               </li>
