@@ -3,6 +3,7 @@ import { useContext } from 'react';
 import './Cart.css';
 import { StoreContext } from '../../context/StoreContext';
 import { useNavigate } from 'react-router-dom';
+import EmptyCart from '../../components/EmptyCart/EmptyCart';
 
 const Cart = () => {
   // get context
@@ -14,46 +15,54 @@ const Cart = () => {
 
   return (
     <div className="cart" id="cart">
-      <div className="cart-items">
-        <div className="cart-items-title">
-          <p>Items</p>
-          <p>Name</p>
-          <p>Price</p>
-          <p>Quantity</p>
-          <p>Total</p>
-          <p>Remove</p>
-        </div>
-        <br />
-        <hr />
-        {/* use index number as the key */}
-        {food_list.map((item) => {
-          // check if the cart has item with the item id
-          if (cartItems[item._id] > 0) {
-            const itemPrice = item.price;
-            let itemQuantity = cartItems[item._id];
-            const itemTotalPrice = itemPrice * itemQuantity;
+      {!getTotalCartAmount() ? (
+        <EmptyCart />
+      ) : (
+        <div className="cart-items">
+          <div className="cart-items-title">
+            <p>Items</p>
+            <p>Name</p>
+            <p>Price</p>
+            <p>Quantity</p>
+            <p>Total</p>
+            <p>Remove</p>
+          </div>
+          <br />
+          <hr />
+          {/* use index number as the key */}
+          {food_list.map((item) => {
+            // check if the cart has item with the item id
+            if (cartItems[item._id] > 0) {
+              const itemPrice = item.price;
+              let itemQuantity = cartItems[item._id];
+              const itemTotalPrice = itemPrice * itemQuantity;
 
-            return (
-              <React.Fragment key={item._id}>
-                {/* display cart items */}
-                <div className="cart-items-title cart-items-item">
-                  <img src={url + '/images/' + item.image} alt="" />
-                  <p>{item.name}</p>
-                  <p>${itemPrice}</p>
-                  <p>{itemQuantity}</p>
-                  <p>${itemTotalPrice}</p>
-                  {/* remove item */}
-                  <p className="cross" onClick={() => removeFromCart(item._id)}>
-                    x
-                  </p>
-                </div>
-                {/* horizontal line after each item */}
-                <hr />
-              </React.Fragment>
-            );
-          }
-        })}
-      </div>
+              return (
+                <React.Fragment key={item._id}>
+                  {/* display cart items */}
+                  <div className="cart-items-title cart-items-item">
+                    <img src={url + '/images/' + item.image} alt="" />
+                    <p>{item.name}</p>
+                    <p>${itemPrice}</p>
+                    <p>{itemQuantity}</p>
+                    <p>${itemTotalPrice}</p>
+                    {/* remove item */}
+                    <p
+                      className="cross"
+                      onClick={() => removeFromCart(item._id)}
+                    >
+                      x
+                    </p>
+                  </div>
+                  {/* horizontal line after each item */}
+                  <hr />
+                </React.Fragment>
+              );
+            }
+          })}
+        </div>
+      )}
+
       <div className="cart-bottom">
         <div className="cart-total">
           <h2>Cart Total</h2>
