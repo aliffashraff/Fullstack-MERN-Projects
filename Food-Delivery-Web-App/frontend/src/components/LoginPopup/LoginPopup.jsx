@@ -14,7 +14,7 @@ const LoginPopup = ({ setShowLogin }) => {
     password: '',
   });
   // acccess url, token and setToken from context
-  const { url, setToken } = useContext(StoreContext);
+  const { url, setToken, loadData } = useContext(StoreContext);
 
   const onChangeHandler = (e) => {
     const name = e.target.name;
@@ -47,6 +47,7 @@ const LoginPopup = ({ setShowLogin }) => {
         // close popup by changing setshowlogin prop
         setShowLogin(false);
         toast.success(response.data.message);
+        loadData();
       }
     } catch (error) {
       alert(
