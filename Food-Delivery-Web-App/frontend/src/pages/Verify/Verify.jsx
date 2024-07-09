@@ -14,7 +14,7 @@ const Verify = () => {
   const success = searchParams.get('success');
   const orderId = searchParams.get('orderId');
   // get url and token from context
-  const { url } = useContext(StoreContext);
+  const { url, setMenu } = useContext(StoreContext);
   const navigate = useNavigate();
 
   const verifyPayment = async () => {
@@ -27,11 +27,13 @@ const Verify = () => {
 
       if (response.data.success) {
         toast.success(response.data.message);
+        setMenu('orders')
         navigate('/myorders');
       }
     } catch (error) {
       console.log(error);
       toast.error(error.response.data.message);
+      setMenu('home')
       navigate('/');
     }
   };
