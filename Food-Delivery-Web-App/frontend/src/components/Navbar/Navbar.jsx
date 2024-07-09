@@ -9,12 +9,13 @@ import { HashLink } from 'react-router-hash-link';
 import { StoreContext } from '../../context/StoreContext';
 
 const Navbar = ({ setShowLogin }) => {
-  // state to set the class for menu
-  const [menu, setMenu] = useState(localStorage.getItem('menu') || 'home');
+  // state to set the class for menu - move to context
+  // const [menu, setMenu] = useState(localStorage.getItem('menu') || 'home');
   const [isScrolled, setIsScrolled] = useState(false);
 
   // get context
-  const { getTotalCartAmount, token, setToken } = useContext(StoreContext);
+  const { getTotalCartAmount, token, setToken, menu, setMenu } =
+    useContext(StoreContext);
 
   const navigate = useNavigate();
 

@@ -14,6 +14,8 @@ const StoreContextProvider = (props) => {
   const [token, setToken] = useState('');
   // state to store food from db
   const [food_list, setFoodList] = useState([]);
+  // menu state in for navbar
+  const [menu, setMenu] = useState(localStorage.getItem('menu') || 'home');
 
   // add to cart function
   const addTocart = async (itemId) => {
@@ -145,6 +147,8 @@ const StoreContextProvider = (props) => {
     token,
     setToken,
     loadCartData,
+    menu,
+    setMenu
   };
 
   return (
