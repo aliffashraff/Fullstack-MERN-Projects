@@ -29,7 +29,7 @@ const App = () => {
         <Routes>
           {/* set the route of the page component */}
           <Route path="/" element={<Home />} />
-          <Route path="/cart" element={<Cart />} />
+          <Route path="/cart" element={<Cart setShowLogin={setShowLogin} />} />
           <Route path="/order" element={<PlaceOrder />} />
           <Route path="/verify" element={<Verify />} />
           <Route path="/myorders" element={<MyOrders />} />
