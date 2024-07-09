@@ -64,7 +64,8 @@
 }
 
 /* style menu when class state changed to 'active' */
-.navbar-menu .active, .navbar-right .active  {
+.navbar-menu .active,
+.navbar-basket-icon .active {
   padding-bottom: 2px;
   border-bottom: 2px solid tomato;
 }
@@ -120,6 +121,9 @@
 }
 
 .nav-profile-dropdown li:hover {
+  color: tomato;
+}
+.nav-profile-dropdown li .active{
   color: tomato;
 }
 
