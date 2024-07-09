@@ -10,7 +10,7 @@ import { StoreContext } from '../../context/StoreContext';
 
 const Navbar = ({ setShowLogin }) => {
   // state to set the class for menu
-  const [menu, setMenu] = useState('home');
+  const [menu, setMenu] = useState(localStorage.getItem('menu') || 'home');
   const [isScrolled, setIsScrolled] = useState(false);
 
   // get context
@@ -41,6 +41,11 @@ const Navbar = ({ setShowLogin }) => {
     //cleanup function
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  useEffect(() => {
+    // save menu state in localstorage
+    localStorage.setItem('menu', menu);
+  }, [menu]);
 
   return (
     <div
@@ -86,9 +91,13 @@ const Navbar = ({ setShowLogin }) => {
       <div className="navbar-right">
         <img src={assets.search_icon} alt="" />
         <div className="navbar-basket-icon">
-          <Link to={'/cart'} onClick={() => setMenu('')}>
+          <HashLink
+            to={'/cart#cart'}
+            onClick={() => setMenu('cart')}
+            className={menu === 'cart' ? 'active' : ''}
+          >
             <img src={assets.basket_icon} alt="" />
-          </Link>
+          </HashLink>
           {/* if there are items in cart, the class 'dot' will be visible */}
           {getTotalCartAmount() > 0 ? <div className="dot"></div> : <></>}
         </div>
