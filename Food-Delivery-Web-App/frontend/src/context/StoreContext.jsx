@@ -111,25 +111,27 @@ const StoreContextProvider = (props) => {
     }
   };
 
+  // to load data
+  async function loadData() {
+    // load the food list
+    await fetchFoodList();
+
+    const storedToken = localStorage.getItem('token');
+    // to avoid logged out when refresh page
+    // when local storage with key name token exist
+    if (storedToken) {
+      // get token from local storage and set token state to the 'token' key
+      setToken(storedToken);
+
+      // load cart by passing token from localstorage
+      await loadCartData(storedToken);
+    }
+  }
+
   // useEffect
   useEffect(() => {
     // console.log(cartItems);
 
-    async function loadData() {
-      // load the food list
-      await fetchFoodList();
-
-      const storedToken = localStorage.getItem('token');
-      // to avoid logged out when refresh page
-      // when local storage with key name token exist
-      if (storedToken) {
-        // get token from local storage and set token state to the 'token' key
-        setToken(storedToken);
-
-        // load cart by passing token from localstorage
-        await loadCartData(storedToken);
-      }
-    }
     loadData();
   }, []);
 
@@ -148,7 +150,8 @@ const StoreContextProvider = (props) => {
     setToken,
     loadCartData,
     menu,
-    setMenu
+    setMenu,
+    loadData,
   };
 
   return (
