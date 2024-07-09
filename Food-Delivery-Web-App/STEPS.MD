@@ -327,3 +327,22 @@
    throw new Error('Invalid credentials. Please provide correct password');}
 4. create token
 5. assign token to response
+
+# Cart
+
+1. user send data of the cart to the backend
+2. create one entry from user id in the cart
+3. when user send data, they will use the token to authenticate them, therefore need to decode the token in the middleware
+
+## Auth middleware
+
+1. get token from header
+2. pass encoded token / payload in req.body or req.user
+3. add the middleware in the route before controller
+4. update the api in the frontend in the addToCart, removeFromCart and loadCart in the context
+
+# Place Order and verify
+1. create place order api to save the order in the db
+2. Create place order model, controller and route
+3. in the placeorder controller creae stripe session that will link and display stripe payment
+4. then after payment success use vrify api to change payment status
