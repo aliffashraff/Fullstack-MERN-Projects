@@ -5,9 +5,9 @@ import { StoreContext } from '../../context/StoreContext';
 import { useNavigate } from 'react-router-dom';
 import EmptyCart from '../../components/EmptyCart/EmptyCart';
 
-const Cart = () => {
+const Cart = ({ setShowLogin }) => {
   // get context
-  const { cartItems, removeFromCart, food_list, getTotalCartAmount, url } =
+  const { cartItems, removeFromCart, food_list, getTotalCartAmount, url, token } =
     useContext(StoreContext);
 
   // use useNavigate to navigate when clicking buttons, not use Link bcs its not a link, but a button
@@ -15,8 +15,8 @@ const Cart = () => {
 
   return (
     <div className="cart" id="cart">
-      {!getTotalCartAmount() ? (
-        <EmptyCart />
+      {!getTotalCartAmount() || !token ? (
+        <EmptyCart setShowLogin={setShowLogin} />
       ) : (
         <div className="cart-items">
           <div className="cart-items-title">
