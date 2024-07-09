@@ -14,7 +14,7 @@ const Navbar = ({ setShowLogin }) => {
   const [isScrolled, setIsScrolled] = useState(false);
 
   // get context
-  const { getTotalCartAmount, token, setToken, menu, setMenu } =
+  const { getTotalCartAmount, token, setToken, menu, setMenu, setCartItems } =
     useContext(StoreContext);
 
   const navigate = useNavigate();
@@ -25,6 +25,7 @@ const Navbar = ({ setShowLogin }) => {
     setToken('');
     // navigate to home
     navigate('/');
+    setCartItems({});
   };
 
   // make the header shadow visible when scrolled
