@@ -4,7 +4,7 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 
 // files
-import connectDB from './db/db.js';
+import connectDB from './db/connectDB.js';
 import authRouter from './routes/authRoute.js';
 
 // config
@@ -17,21 +17,10 @@ app.use(cors());
 app.use(express.json());
 
 // routes
-app.get('/', (req, res) => {
-  res.send('Hello World');
-});
 app.use('/api/auth', authRouter);
 
-const start = async () => {
-  try {
-    connectDB(process.env.MONGO_URI);
-    console.log('DB is connected');
-    app.listen(port, () =>
-      console.log(`Server is listening on port ${port}...`)
-    );
-  } catch (error) {
-    console.log('Databese is not connected:', error);
-  }
-};
-
-start();
+// run server
+app.listen(port, () => {
+  connectDB();
+  console.log(`Server is running on port ${port}...`);
+});
