@@ -14,28 +14,31 @@ const protectMiddleware = async (req, res, next) => {
       });
     }
 
-    // decode token
-    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    // decode token to get userId payload
+    const payload = jwt.verify(token, process.env.JWT_SECRET);
 
-    if (!decoded) {
+    if (!payload) {
       return res
         .status(StatusCodes.UNAUTHORIZED)
         .json({ success: false, error: 'Authentication Error: Invalid token' });
     }
 
-    const { userId } = decoded;
+    const { userId } = payload;
 
-    const user = await UserModel.findOne({ _id: userId }).select('-password');
+    // const user = await UserModel.findOne({ _id: userId }).select('-password');
 
-    if (!user) {
-      return res.status(StatusCodes.BAD_REQUEST).json({
-        success: false,
-        error: 'User not found',
-      });
-    }
+    // if (!user) {
+    //   return res.status(StatusCodes.NOT_FOUND).json({
+    //     success: false,
+    //     error: 'User not found',
+    //   });
+    // }
 
     // pass all user details(except password) in req.user
-    req.user = user;
+    // req.user = user;
+
+    // pass userId
+    req.user = { userId };
 
     next();
   } catch (error) {
