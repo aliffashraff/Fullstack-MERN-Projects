@@ -1,7 +1,9 @@
+// packages
 import { StatusCodes } from 'http-status-codes';
-import UserModel from '../models/UserModel.js';
 import validator from 'validator';
 import bcrypt from 'bcryptjs';
+
+import UserModel from '../models/UserModel.js';
 import generateTokenAndSetCookie from '../lib/utils/generateToken.js';
 
 const signup = async (req, res) => {
@@ -52,19 +54,31 @@ const signup = async (req, res) => {
       // create token and send to browser cookie
       generateTokenAndSetCookie(newUser._id, res);
 
+      const {
+        username,
+        fullName,
+        email,
+        followings,
+        followers,
+        profileImage,
+        coverImage,
+        bio,
+        link,
+      } = newUser;
+
       res.status(StatusCodes.CREATED).json({
         success: true,
         message: 'Account created',
         data: {
-          username: newUser.username,
-          fullName: newUser.fullName,
-          email: newUser.email,
-          followings: newUser.followings,
-          followers: newUser.followers,
-          profileImage: newUser.profileImage,
-          coverImage: newUser.coverImage,
-          bio: newUser.bio,
-          link: newUser.link,
+          username,
+          fullName,
+          email,
+          followers,
+          followings,
+          profileImage,
+          coverImage,
+          bio,
+          link,
         },
         // no need to send token
       });
@@ -105,18 +119,30 @@ const login = async (req, res) => {
     // create token
     generateTokenAndSetCookie(user._id, res);
 
+    const {
+      fullName,
+      email,
+      followings,
+      followers,
+      profileImage,
+      coverImage,
+      bio,
+      link,
+    } = user;
+
     res.status(StatusCodes.OK).json({
       success: true,
       message: 'Login successful',
       data: {
-        fullName: user.fullName,
-        email: user.email,
-        followings: user.followings,
-        followers: user.followers,
-        profileImage: user.profileImage,
-        coverImage: user.coverImage,
-        bio: user.bio,
-        link: user.link,
+        username,
+        fullName,
+        email,
+        followings,
+        followers,
+        profileImage,
+        coverImage,
+        bio,
+        link,
       },
     });
   } catch (error) {
@@ -144,13 +170,21 @@ const logout = async (req, res) => {
 };
 
 const getMe = async (req, res) => {
-  // get userId from req.user assigned in authMiddleware
-  const { _id } = req.user;
   try {
-    const user = await UserModel.findOne({ _id }).select('-password');
+    // get userId from req.user assigned in authMiddleware
+    // rename _id to userId - same as const userId = req.user._id
+    const { userId } = req.user;
+    const user = await UserModel.findOne({ _id: userId }).select('-password');
+
+    if (!user) {
+      return res
+        .status(StatusCodes.NOT_FOUND)
+        .json({ success: false, error: 'User not found' });
+    }
+
     res
       .status(StatusCodes.OK)
-      .json({ success: false, message: 'User authorized', data: user });
+      .json({ success: true, message: 'User authorized', data: user });
   } catch (error) {
     console.log('Error in getMe controller: ', error.message);
     res
