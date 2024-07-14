@@ -3,15 +3,22 @@ import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import cookieParser from 'cookie-parser';
+import { v2 as cloudinary } from 'cloudinary';
 
 // files
 import connectDB from './db/connectDB.js';
 import authRouter from './routes/authRoute.js';
+import userRouter from './routes/userRoute.js';
 
 // config
 dotenv.config();
 const app = express();
 const port = process.env.PORT || 3000;
+cloudinary.config({
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET,
+});
 
 // middlewares
 app.use(cors());
@@ -21,6 +28,7 @@ app.use(cookieParser()); // parse cookies in request
 
 // routes
 app.use('/api/auth', authRouter);
+app.use('/api/user', userRouter);
 
 // run server
 app.listen(port, () => {
