@@ -1,4 +1,5 @@
-STEPS.md
+BACKEND-STEPS.md
+UI-DESIGN-STEPS.md
 /node_modules
 .env
 *.txt
