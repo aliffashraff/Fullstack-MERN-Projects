@@ -20,31 +20,10 @@ const getUserProfile = async (req, res) => {
         .json({ success: false, error: 'User not found' });
     }
 
-    const {
-      fullName,
-      followers,
-      followings,
-      profileImage,
-      coverImage,
-      bio,
-      link,
-      createdAt,
-    } = user;
-
     res.status(StatusCodes.OK).json({
       success: true,
       message: 'Get user profile successful',
-      data: {
-        username,
-        fullName,
-        followers,
-        followings,
-        profileImage,
-        coverImage,
-        bio,
-        link,
-        createdAt,
-      },
+      data: user,
     });
   } catch (error) {
     console.log('Error in getUserProfile controller: ', error.message);
@@ -159,7 +138,7 @@ const getSuggestedUser = async (req, res) => {
       // select 10 random users from the match set
       { $sample: { size: 10 } },
       // only include certain field
-      { $project: { username: 1, profileImage: 1, _id: 1 } },
+      { $project: { username: 1, profileImage: 1, _id: 1, fullName: 1 } },
     ]);
 
     // filter out the followedUsers from all of the sampled users

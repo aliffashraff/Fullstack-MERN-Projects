@@ -54,32 +54,12 @@ const signup = async (req, res) => {
       // create token and send to browser cookie
       generateTokenAndSetCookie(newUser._id, res);
 
-      const {
-        username,
-        fullName,
-        email,
-        followings,
-        followers,
-        profileImage,
-        coverImage,
-        bio,
-        link,
-      } = newUser;
+      const user = await UserModel.findById(newUser._id).select('-password');
 
       res.status(StatusCodes.CREATED).json({
         success: true,
         message: 'Account created',
-        data: {
-          username,
-          fullName,
-          email,
-          followers,
-          followings,
-          profileImage,
-          coverImage,
-          bio,
-          link,
-        },
+        data: user,
         // no need to send token
       });
     } else {
@@ -120,6 +100,7 @@ const login = async (req, res) => {
     generateTokenAndSetCookie(user._id, res);
 
     const {
+      _id,
       fullName,
       email,
       followings,
@@ -128,6 +109,8 @@ const login = async (req, res) => {
       coverImage,
       bio,
       link,
+      likedPosts,
+      createdAt,
     } = user;
 
     res.status(StatusCodes.OK).json({
@@ -135,6 +118,7 @@ const login = async (req, res) => {
       message: 'Login successful',
       data: {
         username,
+        _id,
         fullName,
         email,
         followings,
@@ -143,6 +127,8 @@ const login = async (req, res) => {
         coverImage,
         bio,
         link,
+        likedPosts,
+        createdAt,
       },
     });
   } catch (error) {

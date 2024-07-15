@@ -124,7 +124,7 @@ const likeUnlikePost = async (req, res) => {
 
       const newNotification = await NotificationModel.create({
         from: user._id,
-        to: post._id,
+        to: post.user,
         type: 'like',
       });
 
@@ -246,11 +246,11 @@ const getAllPosts = async (req, res) => {
     // shorthand syntax -> .populate('user', '-password')
     const posts = await PostModel.find()
       .sort('-createdAt')
-      .populate({ path: 'user', select: '-password -email' })
+      .populate({ path: 'user', select: 'username fullName profileImage' })
       // for the comments inside the posts
       .populate({
         path: 'comments.user',
-        select: 'username fullName profileImage ',
+        select: 'username fullName profileImage',
       });
 
     if (posts.length === 0) {
@@ -286,10 +286,10 @@ const getLikedPosts = async (req, res) => {
     const likedPosts = await PostModel.find({
       _id: { $in: user.likedPosts },
     })
-      .populate({ path: 'user', select: 'username, fullname, profileImage' })
+      .populate({ path: 'user', select: 'username fullName profileImage' })
       .populate({
-        path: 'comments',
-        select: 'username, fullname, profileImage',
+        path: 'comments.user',
+        select: 'username fullName profileImage',
       });
 
     res.status(StatusCodes.OK).json({
@@ -331,7 +331,7 @@ const getFollowingsPosts = async (req, res) => {
       data: feedPosts,
     });
   } catch (error) {
-    console.log('Error in getLikedPosts controller: ', error.message);
+    console.log('Error in getFollowingsPosts controller: ', error.message);
     res
       .status(StatusCodes.INTERNAL_SERVER_ERROR)
       .json({ success: false, error: 'Internal Server Error' });
@@ -363,7 +363,7 @@ const getUserPosts = async (req, res) => {
       data: userPosts,
     });
   } catch (error) {
-    console.log('Error in getLikedPosts controller: ', error.message);
+    console.log('Error in getUserPosts controller: ', error.message);
     res
       .status(StatusCodes.INTERNAL_SERVER_ERROR)
       .json({ success: false, error: 'Internal Server Error' });
