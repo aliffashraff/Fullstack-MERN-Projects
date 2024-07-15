@@ -9,6 +9,7 @@ import { v2 as cloudinary } from 'cloudinary';
 import connectDB from './db/connectDB.js';
 import authRouter from './routes/authRoute.js';
 import userRouter from './routes/userRoute.js';
+import postRouter from './routes/postRoute.js';
 
 // config
 dotenv.config();
@@ -29,6 +30,7 @@ app.use(cookieParser()); // parse cookies in request
 // routes
 app.use('/api/auth', authRouter);
 app.use('/api/user', userRouter);
+app.use('/api/post', postRouter);
 
 // run server
 app.listen(port, () => {
