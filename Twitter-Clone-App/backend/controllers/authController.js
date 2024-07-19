@@ -10,6 +10,12 @@ const signup = async (req, res) => {
   try {
     const { username, fullName, email, password } = req.body;
 
+    if (!username || !fullName || !email || !password) {
+      return res
+        .status(StatusCodes.BAD_REQUEST)
+        .json({ success: false, error: 'Please complete all the fields' });
+    }
+
     const existingUsername = await UserModel.findOne({ username });
     const existingEmail = await UserModel.findOne({ email });
 
@@ -91,8 +97,7 @@ const login = async (req, res) => {
     if (!user || !isPasswordMatch) {
       return res.status(StatusCodes.UNAUTHORIZED).json({
         success: false,
-        error:
-          'Invalid credentials. Please provide correct password and username',
+        error: 'Invalid username or password',
       });
     }
 
