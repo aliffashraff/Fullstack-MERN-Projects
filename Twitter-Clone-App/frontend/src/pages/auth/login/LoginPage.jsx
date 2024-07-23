@@ -5,6 +5,9 @@ import XSvg from '../../../components/svgs/X';
 
 import { MdOutlineMail } from 'react-icons/md';
 import { MdPassword } from 'react-icons/md';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+import axios from 'axios';
+import toast from 'react-hot-toast';
 
 const LoginPage = () => {
   const [formData, setFormData] = useState({
@@ -12,16 +15,44 @@ const LoginPage = () => {
     password: '',
   });
 
+  // get useQueryClient to invalidateQueries
+  const queryClient = useQueryClient();
+
+  const {
+    mutate: loginMutation,
+    isError,
+    error,
+    isPending,
+  } = useMutation({
+    mutationFn: async (formData) => {
+      try {
+        const response = await axios.post('/api/auth/login', formData);
+        if (response.data.success) {
+          // console.log(response.data.data);
+          return response.data;
+        }
+      } catch (error) {
+        console.error(error);
+        throw new Error(error.response?.data?.error || 'Something went wrong');
+      }
+    },
+    onSuccess: () => {
+      toast.success('Login successful');
+
+      // refetch authUser from App.jsx
+      // will go redirect to home page
+      queryClient.invalidateQueries({queryKey: ['authUser']})
+    },
+  });
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(formData);
+    loginMutation(formData);
   };
 
   const handleInputChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
-
-  const isError = false;
 
   return (
     <div className="max-w-screen-xl mx-auto flex h-screen">
@@ -56,9 +87,9 @@ const LoginPage = () => {
             />
           </label>
           <button className="btn rounded-full btn-primary text-white">
-            Login
+            {isPending ? 'Loading...' : 'Login'}
           </button>
-          {isError && <p className="text-red-500">Something went wrong</p>}
+          {isError && <p className="text-red-500 max-w-xs">{error.message}</p>}
         </form>
         <div className="flex flex-col gap-2 mt-4">
           <p className="text-white text-lg">{"Don't"} have an account?</p>
