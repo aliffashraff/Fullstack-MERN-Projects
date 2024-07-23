@@ -169,8 +169,8 @@ const getMe = async (req, res) => {
 
     if (!user) {
       return res
-        .status(StatusCodes.NOT_FOUND)
-        .json({ success: false, error: 'User not found' });
+        .status(StatusCodes.UNAUTHORIZED)
+        .json({ success: false, error: 'Unauthorized' });
     }
 
     res
