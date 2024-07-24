@@ -32,7 +32,7 @@ const App = () => {
         throw new Error(error.response?.data?.error || 'Something went wrong');
       }
     },
-    // will try to query only once
+    // will try to query only once if falied
     retry: false,
   });
 
