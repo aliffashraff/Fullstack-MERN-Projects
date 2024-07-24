@@ -21,8 +21,6 @@ const Post = ({ post }) => {
 
   const {
     mutate: deletePostMutation,
-    error,
-    isError,
     isPending,
   } = useMutation({
     mutationFn: async () => {
