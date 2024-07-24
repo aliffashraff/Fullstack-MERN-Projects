@@ -29,7 +29,7 @@ const LoginPage = () => {
         const response = await axios.post('/api/auth/login', formData);
         if (response.data.success) {
           // console.log(response.data.data);
-          return response.data;
+          return response.data.data;
         }
       } catch (error) {
         console.error(error);
@@ -39,7 +39,7 @@ const LoginPage = () => {
     onSuccess: () => {
       toast.success('Login successful');
 
-      // refetch authUser from App.jsx
+      // refetch authUser from App.jsx (mark as stale)
       // will go redirect to home page
       queryClient.invalidateQueries({queryKey: ['authUser']})
     },

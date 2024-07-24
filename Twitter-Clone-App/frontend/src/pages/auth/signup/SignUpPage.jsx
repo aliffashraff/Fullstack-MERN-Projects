@@ -35,7 +35,7 @@ const SignUpPage = () => {
         if (response.data.success) {
           // toast.success('Account created');
           // console.log(response.data.data);
-          return response.data;
+          return response.data.data;
         }
       } catch (error) {
         console.error(error);
