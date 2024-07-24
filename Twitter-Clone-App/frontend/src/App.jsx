@@ -15,7 +15,7 @@ import LoadingSpinner from './components/common/LoadingSpinner';
 
 const App = () => {
   // useQuery used to fetch and cache data.
-  const { data: authUser, isPending } = useQuery({
+  const { data: authUser, isLoading } = useQuery({
     // queryKey is used to refer to the queries later on
     queryKey: ['authUser'],
     queryFn: async () => {
@@ -36,7 +36,7 @@ const App = () => {
     retry: false,
   });
 
-  if (isPending) {
+  if (isLoading) {
     return (
       <div className="h-screen flex justify-center items-center">
         <LoadingSpinner size="lg" />
