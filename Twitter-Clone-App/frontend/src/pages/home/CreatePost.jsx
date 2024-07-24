@@ -2,23 +2,49 @@ import { CiImageOn } from 'react-icons/ci';
 import { BsEmojiSmileFill } from 'react-icons/bs';
 import { useRef, useState } from 'react';
 import { IoCloseSharp } from 'react-icons/io5';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
+import axios from 'axios';
+import toast from 'react-hot-toast';
 
 const CreatePost = () => {
   const [text, setText] = useState('');
-  const [img, setImg] = useState(null);
+  const [image, setImage] = useState(null);
 
   const imgRef = useRef(null);
 
-  const isPending = false;
-  const isError = false;
+  const { data: authUser } = useQuery({ queryKey: ['authUser'] });
 
-  const data = {
-    profileImg: '/avatars/boy1.png',
-  };
+  const queryClient = useQueryClient();
+
+  const {
+    mutate: createPostMutation,
+    error,
+    isError,
+    isPending,
+  } = useMutation({
+    mutationFn: async (text, image) => {
+      try {
+        const response = await axios.post('/api/post/create', { text, image });
+        if (response.data.success) {
+          console.log(response.data.data);
+          return response.data.data;
+        }
+      } catch (error) {
+        console.error(error);
+        throw new Error(error.response?.data?.error || 'Something went wrong');
+      }
+    },
+    onSuccess: () => {
+      toast.success('Post created successfully');
+      setText('');
+      setImage(null);
+      queryClient.invalidateQueries({ queryKey: ['posts'] });
+    },
+  });
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    alert('Post created successfully');
+    createPostMutation(text, image);
   };
 
   const handleImgChange = (e) => {
@@ -26,7 +52,7 @@ const CreatePost = () => {
     if (file) {
       const reader = new FileReader();
       reader.onload = () => {
-        setImg(reader.result);
+        setImage(reader.result);
       };
       reader.readAsDataURL(file);
     }
@@ -36,7 +62,7 @@ const CreatePost = () => {
     <div className="flex p-4 items-start gap-4 border-b border-gray-700">
       <div className="avatar">
         <div className="w-8 rounded-full">
-          <img src={data.profileImg || '/avatar-placeholder.png'} />
+          <img src={authUser.profileImage || '/avatar-placeholder.png'} />
         </div>
       </div>
       <form className="flex flex-col gap-2 w-full" onSubmit={handleSubmit}>
@@ -46,12 +72,12 @@ const CreatePost = () => {
           value={text}
           onChange={(e) => setText(e.target.value)}
         />
-        {img && (
+        {image && (
           <div className="relative w-72 mx-auto">
             <IoCloseSharp
               className="absolute top-0 right-0 text-white bg-gray-800 rounded-full w-5 h-5 cursor-pointer"
               onClick={() => {
-                setImg(null);
+                setImage(null);
                 imgRef.current.value = null;
               }}
             />
@@ -81,7 +107,9 @@ const CreatePost = () => {
             {isPending ? 'Posting...' : 'Post'}
           </button>
         </div>
-        {isError && <div className="text-red-500">Something went wrong</div>}
+        {isError && (
+          <div className="text-red-500">{error.message}</div>
+        )}
       </form>
     </div>
   );
