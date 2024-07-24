@@ -78,10 +78,9 @@ const followUnfollowUser = async (req, res) => {
         { new: true, runValidators: true }
       );
 
-      // TODO return id of user as response
       res.status(StatusCodes.OK).json({
         success: true,
-        message: 'Unfollow successful',
+        message: 'Unfollowed successfully',
       });
     } else {
       // follow user
@@ -104,10 +103,9 @@ const followUnfollowUser = async (req, res) => {
         type: 'follow',
       });
 
-      // TODO return id of user as response
       res.status(StatusCodes.OK).json({
         success: true,
-        message: 'Follow successful',
+        message: 'Followed successfully',
       });
     }
   } catch (error) {
