@@ -19,10 +19,7 @@ const Post = ({ post }) => {
 
   const queryClient = useQueryClient();
 
-  const {
-    mutate: deletePostMutation,
-    isPending,
-  } = useMutation({
+  const { mutate: deletePostMutation, isPending } = useMutation({
     mutationFn: async () => {
       try {
         const response = await axios.delete(`/api/post/delete/${post._id}`);
@@ -98,9 +95,9 @@ const Post = ({ post }) => {
           </div>
           <div className="flex flex-col gap-3 overflow-hidden">
             <span>{post.text}</span>
-            {post.img && (
+            {post.image && (
               <img
-                src={post.img}
+                src={post.image}
                 className="h-80 object-contain rounded-lg border border-gray-700"
                 alt=""
               />

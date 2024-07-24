@@ -22,7 +22,7 @@ const CreatePost = () => {
     isError,
     isPending,
   } = useMutation({
-    mutationFn: async (text, image) => {
+    mutationFn: async ({ text, image }) => {
       try {
         const response = await axios.post('/api/post/create', { text, image });
         if (response.data.success) {
@@ -44,7 +44,7 @@ const CreatePost = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    createPostMutation(text, image);
+    createPostMutation({ text, image });
   };
 
   const handleImgChange = (e) => {
@@ -82,7 +82,7 @@ const CreatePost = () => {
               }}
             />
             <img
-              src={img}
+              src={image}
               className="w-full mx-auto h-72 object-contain rounded"
             />
           </div>
@@ -114,4 +114,5 @@ const CreatePost = () => {
     </div>
   );
 };
+
 export default CreatePost;
