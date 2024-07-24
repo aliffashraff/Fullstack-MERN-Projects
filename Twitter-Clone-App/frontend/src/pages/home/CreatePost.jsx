@@ -26,7 +26,7 @@ const CreatePost = () => {
       try {
         const response = await axios.post('/api/post/create', { text, image });
         if (response.data.success) {
-          console.log(response.data.data);
+          // console.log(response.data.data);
           return response.data.data;
         }
       } catch (error) {
