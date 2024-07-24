@@ -218,9 +218,10 @@ const deletePost = async (req, res) => {
         error: 'You are not authorized to delete this post',
       });
     }
-
+    
     // delete image from cloudinary
     if (post.image) {
+      // example url: 'https://res.cloudinary.com/dwgl6dddo/image/upload/v1721824704/akt8yjgbym7kz8fa5mwa.png'
       const imageId = post.image.split('/').pop().split('.')[0];
       await cloudinary.uploader.destroy(imageId);
     }
