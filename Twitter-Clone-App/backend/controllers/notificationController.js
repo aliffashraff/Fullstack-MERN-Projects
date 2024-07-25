@@ -12,11 +12,12 @@ const getNotifications = async (req, res) => {
       to: userId,
     });
 
-    if (notification.length === 0) {
+    // handled in frontend
+    /* if (notification.length === 0) {
       return res
         .status(StatusCodes.NOT_FOUND)
         .json({ success: false, error: 'No notifications found' });
-    }
+    } */
 
     // update all the noti that match with the userId
     await NotificationModel.updateMany(
@@ -60,13 +61,11 @@ const deleteNotifications = async (req, res) => {
     }
 
     // delete all the noti that were sent to the user
-    await NotificationModel.deleteMany({
-      to: userId,
-    });
+    await NotificationModel.deleteMany({ to: userId });
 
     res.status(StatusCodes.OK).json({
       success: true,
-      message: 'Delete notiications successful',
+      message: 'Notifications deleted successfully',
     });
   } catch (error) {
     console.log('Error in deleteNotifications controller: ', error.message);
