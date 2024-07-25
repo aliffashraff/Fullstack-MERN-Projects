@@ -1,16 +1,17 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 
 import { FaRegComment } from 'react-icons/fa';
 import { BiRepost } from 'react-icons/bi';
 import { FaRegHeart } from 'react-icons/fa';
 import { FaRegBookmark } from 'react-icons/fa6';
 import { FaTrash } from 'react-icons/fa';
+import LoadingSpinner from './LoadingSpinner';
+import { formatPostDate } from '../../utils/date/index';
 
-import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import axios from 'axios';
 import toast from 'react-hot-toast';
-import LoadingSpinner from './LoadingSpinner';
 
 const Post = ({ post }) => {
   const [comment, setComment] = useState('');
@@ -18,6 +19,14 @@ const Post = ({ post }) => {
   const { data: authUser } = useQuery({ queryKey: ['authUser'] });
 
   const queryClient = useQueryClient();
+
+  const postOwner = post.user;
+
+  const isLiked = post.likes.includes(authUser._id);
+
+  const isMyPost = authUser._id === post.user._id;
+
+  const formattedDate = formatPostDate(post.createdAt);
 
   const { mutate: deletePostMutation, isPending: isDeleting } = useMutation({
     mutationFn: async () => {
@@ -57,8 +66,8 @@ const Post = ({ post }) => {
 
       // not the best UX bcs will refetch all posts
       // queryClient.invalidateQueries({ queryKey: ['posts'] });
-      // instead update cache directly for that post
 
+      // instead update cache directly for that post
       queryClient.setQueryData(['posts'], (oldData) => {
         // if this post we just liked, update number of likes
         return oldData.map((p) => {
@@ -74,14 +83,28 @@ const Post = ({ post }) => {
     },
   });
 
-  const postOwner = post.user;
-  const isLiked = post.likes.includes(authUser._id);
-
-  const isMyPost = authUser._id === post.user._id;
-
-  const formattedDate = '1h';
-
-  const isCommenting = false;
+  const { mutate: commentPostMutation, isPending: isCommenting } = useMutation({
+    mutationFn: async () => {
+      try {
+        const response = await axios.post(`/api/post/comment/${post._id}`, {
+          text: comment,
+        });
+        if (response.data.success) {
+          return response.data;
+        }
+      } catch (error) {
+        console.error(error);
+        throw new Error(error.response?.data?.error || 'Something went wrong');
+      }
+    },
+    onSuccess: (data) => {
+      toast.success(data.message);
+      queryClient.invalidateQueries({ queryKey: ['posts'] });
+    },
+    onError: (error) => {
+      toast.error(error.message);
+    },
+  });
 
   const handleDeletePost = () => {
     deletePostMutation();
@@ -89,6 +112,8 @@ const Post = ({ post }) => {
 
   const handlePostComment = (e) => {
     e.preventDefault();
+    if (isCommenting) return;
+    commentPostMutation();
   };
 
   const handleLikePost = () => {

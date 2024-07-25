@@ -99,9 +99,14 @@ const likeUnlikePost = async (req, res) => {
         { new: true, runValidators: true }
       );
 
+      const updatedLikes = post.likes.filter(
+        (likedId) => likedId.toString() !== userId.toString()
+      );
+
       res.status(StatusCodes.OK).json({
         success: true,
-        message: 'Unlike post successful',
+        message: 'Unliked post successfully',
+        data: updatedLikes,
       });
     }
     // like post
@@ -128,9 +133,12 @@ const likeUnlikePost = async (req, res) => {
         type: 'like',
       });
 
+      const updatedLikes = post.likes;
+
       res.status(StatusCodes.OK).json({
         success: true,
-        message: 'Like post successful',
+        message: 'Liked post successfully',
+        data: updatedLikes,
       });
     }
   } catch (error) {
@@ -187,7 +195,7 @@ const commentOnPost = async (req, res) => {
 
     res.status(StatusCodes.OK).json({
       success: true,
-      message: 'Comment on post successful',
+      message: 'Comment posted successfully',
       data: newComment,
     });
   } catch (error) {
@@ -218,7 +226,7 @@ const deletePost = async (req, res) => {
         error: 'You are not authorized to delete this post',
       });
     }
-    
+
     // delete image from cloudinary
     if (post.image) {
       // example url: 'https://res.cloudinary.com/dwgl6dddo/image/upload/v1721824704/akt8yjgbym7kz8fa5mwa.png'
