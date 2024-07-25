@@ -99,9 +99,7 @@ const likeUnlikePost = async (req, res) => {
         { new: true, runValidators: true }
       );
 
-      const updatedLikes = post.likes.filter(
-        (likedId) => likedId.toString() !== userId.toString()
-      );
+      const updatedLikes = unlike.likes;
 
       res.status(StatusCodes.OK).json({
         success: true,
@@ -133,7 +131,7 @@ const likeUnlikePost = async (req, res) => {
         type: 'like',
       });
 
-      const updatedLikes = post.likes;
+      const updatedLikes = like.likes;
 
       res.status(StatusCodes.OK).json({
         success: true,
