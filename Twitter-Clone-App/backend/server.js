@@ -1,4 +1,5 @@
 // packages
+import path from 'path';
 import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
@@ -21,6 +22,7 @@ cloudinary.config({
   api_key: process.env.CLOUDINARY_API_KEY,
   api_secret: process.env.CLOUDINARY_API_SECRET,
 });
+const __dirname = path.resolve();
 
 // middlewares
 app.use(cors());
@@ -34,6 +36,14 @@ app.use('/api/auth', authRouter);
 app.use('/api/user', userRouter);
 app.use('/api/post', postRouter);
 app.use('/api/notification', notificationRouter);
+
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static(path.join(__dirname, '/frontend/dist')));
+
+  app.get('*', (req, res) => {
+    res.sendFile(path.resolve(__dirname, 'frontend', 'dist', 'index.html'));
+  });
+}
 
 // run server
 app.listen(port, () => {
