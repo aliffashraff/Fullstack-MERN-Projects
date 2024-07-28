@@ -43,6 +43,7 @@ const EditProfileModal = ({ authUser }) => {
 
         if (data.data.username !== authUser.username) {
           navigate(`/profile/${data.data.username}`);
+          return;
         }
 
         Promise.all([
