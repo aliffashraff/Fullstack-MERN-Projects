@@ -53,7 +53,7 @@ const ProfilePage = () => {
     },
   });
 
-  const { mutate: updateProfileMutation, isPending: isUpdatingProfile } =
+  const { mutateAsync: updateProfileMutation, isPending: isUpdatingProfile } =
     useMutation({
       mutationFn: async () => {
         try {
@@ -192,7 +192,11 @@ const ProfilePage = () => {
                 {(coverImg || profileImg) && (
                   <button
                     className="btn btn-primary rounded-full btn-sm text-white px-4 ml-2"
-                    onClick={() => updateProfileMutation()}
+                    onClick={async () => {
+                      await updateProfileMutation();
+                      setCoverImg(null);
+                      setProfileImg(null);
+                    }}
                   >
                     {isUpdatingProfile ? <LoadingSpinner /> : 'Update'}
                   </button>
