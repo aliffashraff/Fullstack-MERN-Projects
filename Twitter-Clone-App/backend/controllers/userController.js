@@ -252,7 +252,7 @@ const updateUserProfile = async (req, res) => {
 
     res.status(StatusCodes.OK).json({
       success: true,
-      message: 'Update user profile successful',
+      message: 'User profile updated successfully',
       data: updatedUser,
     });
   } catch (error) {
