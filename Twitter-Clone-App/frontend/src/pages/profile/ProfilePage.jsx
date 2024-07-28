@@ -7,8 +7,6 @@ import ProfileHeaderSkeleton from '../../components/skeletons/ProfileHeaderSkele
 import EditProfileModal from './EditProfileModal';
 import { formatMemberSinceDate } from '../../utils/date/index';
 
-import { POSTS } from '../../utils/db/dummy';
-
 import { FaArrowLeft } from 'react-icons/fa6';
 import { IoCalendarOutline } from 'react-icons/io5';
 import { FaLink } from 'react-icons/fa';
@@ -32,6 +30,7 @@ const ProfilePage = () => {
 
   const { followUnfollowMutation, isPending } = useFollow();
 
+  const { data: posts } = useQuery({ queryKey: ['posts'] });
   const { data: authUser } = useQuery({ queryKey: ['authUser'] });
 
   const {
@@ -122,7 +121,7 @@ const ProfilePage = () => {
                 <div className="flex flex-col">
                   <p className="font-bold text-lg">{user?.fullName}</p>
                   <span className="text-sm text-slate-500">
-                    {POSTS?.length} posts
+                    {posts?.length} posts
                   </span>
                 </div>
               </div>
