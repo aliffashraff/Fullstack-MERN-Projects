@@ -37,15 +37,7 @@ const MyOrders = () => {
 
   return (
     <div className="my-orders">
-      {data.length === 0 ? (
-        <div className="empty-order-container">
-          <h2>You Do Not Have Any Order</h2>
-          <p>Please make a payment to view your orders.</p>
-          <Link to={'/'}>
-            <button onClick={() => setMenu('home')}>View Menu</button>
-          </Link>
-        </div>
-      ) : (
+      {data.length !== 0 ? (
         <>
           <h2>My Orders</h2>
           <div className="container">
@@ -75,6 +67,14 @@ const MyOrders = () => {
             ))}
           </div>
         </>
+      ) : (
+        <div className="empty-order-container">
+          <h2>You Do Not Have Any Order</h2>
+          <p>Please make a payment to view your orders.</p>
+          <Link to={'/'}>
+            <button onClick={() => setMenu('home')}>View Menu</button>
+          </Link>
+        </div>
       )}
     </div>
   );
