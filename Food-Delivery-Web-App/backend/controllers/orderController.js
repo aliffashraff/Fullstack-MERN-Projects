@@ -13,7 +13,7 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 const placeOrder = async (req, res) => {
   const { userId, items, amount, address } = req.body;
 
-  const frontendUrl = 'http://localhost:5173';
+  const frontendUrl = 'https://food-delivery-frontend-kht6.onrender.com';
 
   try {
     // create and save order in db
