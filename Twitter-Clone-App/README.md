@@ -1,6 +1,7 @@
 # Twitter Clone App
 
-![Twitter Clone](https://github.com/user-attachments/assets/fe34ece5-7cff-4153-85f8-b8adbae841ab) <!-- Replace with actual screenshot if available -->
+![X](https://github.com/user-attachments/assets/9c6bc52c-e815-4373-b904-6a3cf4707d17)
+
 
 ## Description
 
@@ -33,11 +34,8 @@ Check out the live website: [twitter-clone-l2ip.onrender.com](https://twitter-cl
 To run this project locally, follow these steps:
 
 1. **Clone the repository:** ``git clone https://github.com/aliffashraff/Fullstack-MERN-Projects.git``
-
 2. **Navigate to the project directory:** ``cd Fullstack-MERN-Projects/Twitter-Clone-App``
-   
-4. **Install dependencies:** ``npm install``
-
+3. **Install dependencies:** ``npm install``
 4. **Start the development server:** ``npm run dev``
 
 The website should now be running on http://localhost:3000.
@@ -52,3 +50,6 @@ Once the application is running, you can:
 
 ## Contributing
 Contributions are welcome! If you have suggestions or find issues, feel free to open an issue or submit a pull request.
+
+## Contact
+Feel free to reach out to me via [aliffzulkiffli97@gmail.com](mailto:aliffzulkiffli97@gmail.com) or connect with me on [LinkedIn](https://www.linkedin.com/in/aliff-ashraff/).
