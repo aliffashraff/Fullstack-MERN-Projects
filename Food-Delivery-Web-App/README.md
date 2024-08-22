@@ -49,4 +49,8 @@ The backend should now be running on http://localhost:5000.
 - **Admin Panel:** Use the admin panel to manage food items, view orders, and handle user accounts.
 - **API Endpoints:** Access the API documentation to interact with the backend and perform CRUD operations on food items, orders, and user accounts.
 
+## Contributing
+Contributions are welcome! If you have suggestions or find issues, feel free to open an issue or submit a pull request.
 
+## Contact
+Feel free to reach out to me via [aliffzulkiffli97@gmail.com](mailto:aliffzulkiffli97@gmail.com) or connect with me on [LinkedIn](https://www.linkedin.com/in/aliff-ashraff/).
