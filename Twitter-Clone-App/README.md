@@ -66,7 +66,3 @@ Contributions are welcome! If you have suggestions or find issues, feel free to 
 ## Contact
 
 Feel free to reach out to me via [aliffzulkiffli97@gmail.com](mailto:aliffzulkiffli97@gmail.com) or connect with me on [LinkedIn](https://www.linkedin.com/in/aliff-ashraff/).
-
----
-
-**Twitter Clone | React.js, MongoDB, Node.js, Express, Tailwind, React Query, Cloudinary | July 2024**
