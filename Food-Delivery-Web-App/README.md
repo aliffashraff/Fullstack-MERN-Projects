@@ -5,28 +5,30 @@
 
 ## Description
 
-This is a full-stack Food Delivery Web App built with the MERN stack. It includes a frontend application for managing food delivery services and an admin panel for overseeing operations and managing data.
+A full-featured food ordering website built with the MERN stack, including a React.js frontend, Node.js and Express backend, and MongoDB for data storage. The application includes a user-friendly frontend for customers and a comprehensive admin panel for managing food items and orders.
 
 ## Live Demos
 
-- **Frontend Application**: [food-delivery-frontend-kht6.onrender.com](https://food-delivery-frontend-kht6.onrender.com)
-- **Admin Panel**: [food-delivery-admin-gexh.onrender.com](https://food-delivery-admin-gexh.onrender.com)
+- **App URL**: [food-delivery-frontend-kht6.onrender.com](https://food-delivery-frontend-kht6.onrender.com)
+- **Admin Panel URL**: [food-delivery-admin-gexh.onrender.com](https://food-delivery-admin-gexh.onrender.com)
 
 ## Features
 
-- **Frontend Application**: Browse food items, place orders, and view order history.
-- **Admin Panel**: Manage food items, view orders, and handle user accounts.
-- **User Management**: Register, log in, and manage user profiles.
-- **Order Management**: Place and track orders, and view order history.
+- **User Interface**: Browse food items, place orders, and view order history.
+- **Admin Panel**: Manage food items, update order statuses, and track orders.
+- **Authentication**: Secure login and registration using JWT-based user authentication.
+- **Shopping Cart & Checkout**: Includes cart management and checkout with Stripe payment integration.
+- **Image Handling**: Utilizes Multer for handling product images.
 - **Responsive Design**: Optimized for various devices and screen sizes.
 
 ## Technologies Used
 
-- **React.js**: Frontend framework for building the user interface of both the frontend application and the admin panel.
+- **React.js**: For building the user interface of the frontend and admin panel.
 - **Node.js & Express.js**: Backend server and API for handling requests and business logic.
 - **MongoDB**: NoSQL database for storing user data, food items, and orders.
-- **Tailwind CSS**: For styling and responsive design.
-- **Axios**: For making HTTP requests from the frontend to the backend API.
+- **Stripe**: For handling payments during checkout.
+- **Multer**: For image uploading and handling.
+- **CSS**: For styling and responsive design.
 
 ## Installation
 
@@ -70,9 +72,9 @@ To run this project locally, follow these steps:
 
 ## Usage
 
-- **Frontend Application:** Use the frontend application to browse food items, place orders, and view your order history.
-- **Admin Panel:** Use the admin panel to manage food items, view and process orders, and handle user accounts.
-- **API Endpoints:** Access the API endpoints through the backend to interact with the database and perform CRUD operations.
+- **Frontend Application:** Browse and order food items, and manage your cart and checkout.
+- **Admin Panel:** Manage food items, update order statuses, and track orders.
+- **API Endpoints:** Access the backend API for CRUD operations on food items and orders.
 
 ## Contributing
 
